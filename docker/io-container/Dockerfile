@@ -64,5 +64,4 @@ RUN mkdir -p /var/run/sshd
 RUN echo 'root:nuxeoiocontainer' | chpasswd
 
 # Start supervisord
-ENTRYPOINT ["sh", "/root/entrypoint.sh"]
 CMD ["supervisord"]
