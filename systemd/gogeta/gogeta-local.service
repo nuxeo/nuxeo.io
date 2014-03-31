@@ -1,0 +1,15 @@
+[Unit]
+Description=Nuxeo Gogeta Core service
+After=etcd-local.service
+
+[Service]
+ExecStart=/opt/data/systemd/gogeta/start.sh
+ExecStop=/opt/data/systemd/gogeta/stop.sh
+
+Restart=always
+# Set a longish timeout in case this machine isn't behaving
+# nicely and bothering the rest of the cluster
+RestartSec=10s
+
+[Install]
+WantedBy=local.target
