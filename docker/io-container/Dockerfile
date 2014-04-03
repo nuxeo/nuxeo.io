@@ -51,8 +51,6 @@ ADD nuxeo-boot.sh /root/nuxeo-boot.sh
 ADD postgres-waiter.py /root/postgres-waiter.py
 ADD postgres-configure.sh /root/postgres-configure.sh
 
-ADD etcdctl /usr/bin/etcdctl
-
 # Download & Install Nuxeo
 RUN /bin/bash /root/nuxeo-install.sh
 ENV NUXEOCTL /var/lib/nuxeo/server/bin/nuxeoctl
