@@ -1,0 +1,15 @@
+[Unit]
+Description=PostgreSQL Startup
+After=etcd-local.service
+
+[Service]
+ExecStart=/opt/data/systemd/postgres/start.sh
+RemainAfterExit=yes
+
+Restart=always
+# Set a longish timeout in case this machine isn't behaving
+# nicely and bothering the rest of the cluster
+RestartSec=10s
+
+[Install]
+WantedBy=local.target
