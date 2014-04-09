@@ -1,0 +1,7 @@
+[Unit]
+Description=Build iocontainer Docker image
+After=build-io-base.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /opt/data/fleet/build-io-container/start.sh

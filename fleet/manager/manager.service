@@ -1,6 +1,6 @@
 [Unit]
 Description=Manager
-After=docker-registry.service
+After=build-io-base.service
 
 [Service]
 TimeoutStartSec=0
