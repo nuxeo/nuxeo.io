@@ -8,3 +8,4 @@ RemainAfterExit=yes
 Environment='POSTGRES_NAME=postgres'
 ExecStartPre=/bin/sh /opt/data/fleet/postgres/start-pre.sh
 ExecStart=/bin/sh /opt/data/fleet/postgres/start.sh
+ExecStop=/bin/sh /opt/data/fleet/postgres/stop.sh

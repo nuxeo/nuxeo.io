@@ -28,23 +28,17 @@ RUN apt-get update
 RUN apt-get upgrade -y
 
 # Install PostgreSQL
-RUN sudo apt-get install -y supervisor postgresql-9.3 unzip vim openssh-server curl zip unzip
-
-RUN mkdir -p /var/log/supervisor
+RUN sudo apt-get install -y postgresql-9.3
 
 # Copy scripts
-ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-ADD postgres-waiter.py /root/postgres-waiter.py
-ADD postgres-configure.sh /root/postgres-configure.sh
-ADD postgres-setup.sh /root/postgres-setup.sh
-
-RUN /bin/sh /root/postgres-setup.sh
+ADD start.sh /root/start.sh
+ADD pg_hba.conf /root/pg_hba.conf
 
 # Expose default PostgreSQL and SSH ports
-EXPOSE 5432 22
+EXPOSE 5432
 
-RUN mkdir -p /var/run/sshd
-RUN echo 'root:nuxeoiocontainer' | chpasswd
+# Shared Volumes
+# VOLUME	["/opt/db:/opt/db:rw"]
 
-# Start supervisord
-CMD ["supervisord"]
+# Start PostgreSQL
+CMD ["/root/start.sh"]

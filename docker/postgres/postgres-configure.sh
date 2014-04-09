@@ -1,7 +1,8 @@
 #!/bin/sh
+CONFIG_DONE=/opt/db/nuxeodb/postgres-configure-done
 
 # Prevent postgres-configure from being executed twice
-if [ -f /root/postgres-configure-done ]; then
+if [ -f CONFIG_DONE ]; then
     exit 0
 fi
 
@@ -18,4 +19,4 @@ COMMENT ON FUNCTION pg_catalog.text(bigint) IS 'convert bigint to text';
 EOF
 
 # Prevent postgres-configure from being executed twice
-touch /root/postgres-configure-done
+touch CONFIG_DONE
