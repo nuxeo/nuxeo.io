@@ -1,5 +1,5 @@
 #!/bin/sh
-VIRT=`coreos-detect-virt`
+VIRT=`systemd-detect-virt`
 if [ $VIRT = "ec2" -o $VIRT = "xen" ] ; then
   echo `curl http://169.254.169.254/latest/meta-data/local-ipv4`
 else
