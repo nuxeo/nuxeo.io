@@ -1,5 +1,6 @@
 [Unit]
 Description=PostgreSQL
+Requires=docker-registry.service
 After=docker-registry.service
 
 [Service]

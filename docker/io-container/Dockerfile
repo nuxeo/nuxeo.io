@@ -2,7 +2,7 @@
 #
 # VERSION               0.0.1
 
-FROM       nuxeo:io-base
+FROM       nuxeo/iobase
 MAINTAINER Nuxeo <contact@nuxeo.com>
 
 # Copy scripts

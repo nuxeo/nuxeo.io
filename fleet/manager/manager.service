@@ -1,5 +1,6 @@
 [Unit]
 Description=Manager
+Requires=build-io-base.service
 After=build-io-base.service
 
 [Service]
@@ -10,3 +11,6 @@ ExecStartPre=/bin/sh /opt/data/fleet/manager/start-pre.sh
 ExecStart=/bin/sh /opt/data/fleet/manager/start.sh
 ExecStartPost=/bin/sh /opt/data/fleet/manager/start-post.sh
 ExecStop=/opt/data/fleet/manager/stop.sh
+
+[X-Fleet]
+X-ConditionMachineOf=build-io-base.service

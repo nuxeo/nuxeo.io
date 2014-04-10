@@ -1,7 +1,9 @@
 [Unit]
 Description=Build iobase Docker image
+Requires=docker-registry.service
 After=docker-registry.service
 
 [Service]
 Type=oneshot
 ExecStart=/bin/sh /opt/data/fleet/build-io-base/start.sh
+RemainAfterExit=yes
