@@ -1,9 +1,9 @@
 #!/bin/sh
+CONFIG_DONE=/opt/db/nuxeodb/postgres-configure-done
 
 echo "kernel.shmmax = 301989888" >> /etc/sysctl.conf
 
 if [ ! -d "/opt/db/nuxeodb" ]; then
-echo "yoyo"
     # PostgreSQL setup
     LC_ALL=en_US.UTF-8 su postgres --preserve-environment -c "/usr/lib/postgresql/9.3/bin/initdb -D /opt/db/nuxeodb"
 
@@ -24,4 +24,29 @@ fi
 
 # Start expecting cmd
 chown postgres:postgres /opt/db/nuxeodb/
+
+if [ ! -f $CONFIG_DONE ]; then
+  su postgres -c "/usr/lib/postgresql/9.3/bin/postgres -D /opt/db/nuxeodb &"
+
+  sleep 2
+
+  # PostgreSQL setup
+  su postgres -c "psql template1 --quiet -t -f-" << EOF > /dev/null
+
+  CREATE FUNCTION pg_catalog.text(integer) RETURNS text STRICT IMMUTABLE LANGUAGE SQL AS 'SELECT textin(int4out(\$1));';
+  CREATE CAST (integer AS text) WITH FUNCTION pg_catalog.text(integer) AS IMPLICIT;
+  COMMENT ON FUNCTION pg_catalog.text(integer) IS 'convert integer to text';
+  CREATE FUNCTION pg_catalog.text(bigint) RETURNS text STRICT IMMUTABLE LANGUAGE SQL AS 'SELECT textin(int8out(\$1));';
+  CREATE CAST (bigint AS text) WITH FUNCTION pg_catalog.text(bigint) AS IMPLICIT;
+  COMMENT ON FUNCTION pg_catalog.text(bigint) IS 'convert bigint to text';
+
+  ALTER USER postgres PASSWORD 'nuxeoiopostgres';
+EOF
+
+  ps U postgres u | grep /usr/lib/postgresql/9.3/bin/postgres | awk '{print $2}' | xargs kill
+
+  # Prevent postgres-configure from being executed twice
+  touch $CONFIG_DONE
+fi
+
 su postgres -c "/usr/lib/postgresql/9.3/bin/postgres -D /opt/db/nuxeodb"
