@@ -4,7 +4,8 @@ Requires=docker-registry.service
 After=docker-registry.service
 
 [Service]
-Environment='POSTGRES_NAME=postgres' 'PGCONF_SERVICE_NAME=postgres-config'
+TimeoutStartSec=0
+Environment='POSTGRES_NAME=postgres'
 ExecStartPre=/bin/sh /opt/data/fleet/postgres/start-pre.sh
 ExecStart=/bin/sh /opt/data/fleet/postgres/start.sh
 ExecStop=/bin/sh /opt/data/fleet/postgres/stop.sh
