@@ -1,7 +1,7 @@
 [Unit]
 Description=Manager
-Requires=build-io-base.service
-After=build-io-base.service
+Requires=build-io-base.service postgres-service
+After=build-io-base.service postgres-service
 
 [Service]
 TimeoutStartSec=0

@@ -45,10 +45,8 @@ ENV NUXEO_HOME /var/lib/nuxeo/server
 ENV NUXEOCTL /var/lib/nuxeo/server/bin/nuxeoctl
 
 # Copy scripts
-ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD nuxeo-boot.sh /root/nuxeo-boot.sh
-ADD postgres-waiter.py /root/postgres-waiter.py
-ADD postgres-configure.sh /root/postgres-configure.sh
+ADD entrypoint.sh /root/entrypoint.sh
 
 # Expose default Tomcat and SSH ports
 EXPOSE 8080 22
@@ -56,5 +54,4 @@ EXPOSE 8080 22
 RUN mkdir -p /var/run/sshd
 RUN echo 'root:nuxeoiocontainer' | chpasswd
 
-# Start supervisord
-CMD ["supervisord"]
+ENTRYPOINT ['/root/entrypoint.sh']

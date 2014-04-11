@@ -1,6 +1,7 @@
 #!/bin/sh
 
 POSTGRES_NAME=postgres-service
+PGPASSWORD=nxiopostgres
 POSTGRES_AMB=postgres-amb
 PG_PWD=`openssl rand -base64 20`
 PG_HOST=`/usr/bin/etcdctl get /service/$POSTGRES_NAME/1/host`
