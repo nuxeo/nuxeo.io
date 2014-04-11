@@ -15,6 +15,7 @@ CONNECT_URL=`/usr/bin/etcdctl get /config/connect/url`
 if [ ! $? -eq 0 ]; then
   CONNECT_URL=""
 fi
+REGISTRY=`etcdctl get /services/docker-registry/1/location | sed -e 's/{"host":"\([^"]*\)","port":\([^"]*\)}/\1\:\2/'`
 
 PACKAGES=`/usr/bin/etcdctl get /envs/${ENV_TECH_ID}/config/packages`
 if [ ! $? -eq 0 ]; then
