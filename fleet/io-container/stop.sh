@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Should be in a stopPre script but it doesn't exist
-/usr/bin/etcdctl set /envs/$ENV_TECH_ID/status/current stopping
+/usr/bin/etcdctl set /services/$ENV_TECH_ID/1/status/current stopping
 
 # Sometimes, container seems not yet stopped
 docker ps | grep $ENV_TECH_ID

@@ -2,7 +2,7 @@
 Description=Nuxeo IO Container - NXIO-000001 - sample
 
 [Service]
-Environment='ENV_TECH_ID=NXIO-000001' 'DOCKER_REGISTRY=${dockerRegistry}'
+Environment='ENV_TECH_ID=NXIO-000001'
 ExecStartPre=/opt/data/fleet/io-container/start-pre.sh
 ExecStart=/opt/data/fleet/io-container/start.sh
 ExecStartPost=/opt/data/fleet/io-container/start-post.sh
