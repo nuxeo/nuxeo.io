@@ -34,7 +34,7 @@ RUN apt-get -y install fuse
 
 # Install Nuxeo Dependencies
 # RUN sudo apt-get install -y acpid openjdk-7-jdk libreoffice imagemagick poppler-utils ffmpeg ffmpeg2theora ufraw libwpd-tools perl locales pwgen dialog supervisor unzip vim
-RUN sudo apt-get install -y openjdk-7-jdk perl locales pwgen supervisor postgresql-9.3 unzip vim openssh-server curl zip unzip
+RUN sudo apt-get install -y openjdk-7-jdk perl locales pwgen supervisor postgresql-client-9.3 unzip vim openssh-server curl zip unzip
 
 RUN mkdir -p /var/log/supervisor
 
