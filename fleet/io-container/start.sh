@@ -1,3 +1,10 @@
 #!/bin/sh
 
-/usr/bin/docker run -p 22 -t -p 8080 --name ${ENV_TECH_ID} -e ENV_TECH_ID=${ENV_TECH_ID} ${DOCKER_REGISTRY}/nuxeo/iocontainer
+POSTGRES_AMB=postgres-amb
+PG_PWD=`openssl rand -base64 20`
+
+psql -h $PG_HOST -p $PG_PORT -U postgres -t template1 --quiet -t -f-" << EOF > /dev/null
+    ALTER USER $ENV_TECH_ID WITH PASSWORD '$PG_PWD';
+EOF
+
+/usr/bin/docker run -P -t --name ${ENV_TECH_ID} --link ${POSTGRES_AMB}:db -e PG_PWD=${PG_PWD} -e ENV_TECH_ID=${ENV_TECH_ID} ${DOCKER_REGISTRY}/nuxeo/iocontainer
