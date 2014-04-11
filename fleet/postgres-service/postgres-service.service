@@ -1,0 +1,11 @@
+[Unit]
+Description=PostgreSQL
+Requires=docker-registry.service
+After=docker-registry.service
+
+[Service]
+TimeoutStartSec=0
+Environment='POSTGRES_NAME=postgres-service'
+ExecStartPre=/bin/sh /opt/data/fleet/postgres-service/start-pre.sh
+ExecStart=/bin/sh /opt/data/fleet/postgres-service/start.sh
+ExecStop=/bin/sh /opt/data/fleet/postgres-service/stop.sh

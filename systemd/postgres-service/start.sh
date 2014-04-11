@@ -1,8 +1,8 @@
 #!/bin/sh
 
 FLEETCTL=fleetctl
-POSTGRES_UNIT=postgres
-SCRIPTS=/opt/data/fleet/postgres/postgres.service
+POSTGRES_UNIT=postgres-service
+SCRIPTS=/opt/data/fleet/postgres-service/postgres-service.service
 
 # Submit and start registry units if not already submitted
 $FLEETCTL list-units --no-legend | grep $POSTGRES_UNIT > /dev/null 2>&1
