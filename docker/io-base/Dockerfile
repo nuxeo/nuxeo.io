@@ -45,7 +45,6 @@ ENV NUXEO_HOME /var/lib/nuxeo/server
 ENV NUXEOCTL /var/lib/nuxeo/server/bin/nuxeoctl
 
 # Copy scripts
-ADD nuxeo-boot.sh /root/nuxeo-boot.sh
 ADD entrypoint.sh /root/entrypoint.sh
 
 # Expose default Tomcat and SSH ports

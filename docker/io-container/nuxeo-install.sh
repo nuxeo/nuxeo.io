@@ -21,7 +21,6 @@ mkdir -p /var/run/nuxeo
 chown -R $nuxeouid:$nuxeogid /var/lib/nuxeo
 chown -R $nuxeouid:$nuxeogid /var/log/nuxeo
 chown -R $nuxeouid:$nuxeogid /var/run/nuxeo
-chown -R $nuxeouid:$nuxeogid /etc/nuxeo
 
 cat << EOF >> $NUXEO_HOME/bin/nuxeo.conf
 nuxeo.log.dir=/var/log/nuxeo
