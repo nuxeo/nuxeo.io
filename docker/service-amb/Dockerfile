@@ -23,5 +23,8 @@ RUN go get github.com/nuxeo/etcd-netfw
 WORKDIR /usr/local/go/src/github.com/nuxeo/etcd-netfw
 RUN go build
 
+# Expose default listening amb port
+EXPOSE 1337
+
 ADD service-amb.sh /usr/bin/service-amb.sh
 ENTRYPOINT ["/usr/bin/service-amb.sh"]
