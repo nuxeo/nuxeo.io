@@ -45,7 +45,7 @@ ENV NUXEO_HOME /var/lib/nuxeo/server
 ENV NUXEOCTL /var/lib/nuxeo/server/bin/nuxeoctl
 
 # Copy scripts
-ADD entrypoint.sh /root/entrypoint.sh
+ADD start.sh /root/start.sh
 
 # Expose default Tomcat and SSH ports
 EXPOSE 8080 22
@@ -53,4 +53,4 @@ EXPOSE 8080 22
 RUN mkdir -p /var/run/sshd
 RUN echo 'root:nuxeoiocontainer' | chpasswd
 
-ENTRYPOINT ['/root/entrypoint.sh']
+CMD ["/root/start.sh"]
