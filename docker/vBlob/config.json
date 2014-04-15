@@ -1,0 +1,20 @@
+{
+  "drivers": [
+    {
+      "fs-1": {
+        "type": "fs",
+        "option": {
+          "root": "/opt/data/blobs"
+        }
+      }
+    }
+  ],
+  "port": "9981",
+  "current_driver": "fs-1",
+  "logtype": "winston",
+  "logfile": "./log.txt",
+  "keyID": "dummy",
+  "secretID": "dummy",
+  "auth": "disabled",
+  "account_api" : true
+}
