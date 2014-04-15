@@ -4,8 +4,8 @@
 /usr/sbin/sshd
 
 # Create ROLE and DB
-PGPASSWORD=nxiopostgres
-psql -h $DB_PORT_1337_TCP_ADDR -p $DB_PORT_1337_TCP_PORT -U postgres -t template1 -c '\du' | grep $DB_NAME
+PGPASSWORD=nuxeoiopostgres
+psql -h $DB_PORT_1337_TCP_ADDR -p $DB_PORT_1337_TCP_PORT -U postgres -t template1 -c '\du' | grep $PG_ROLE_NAME
 if [ ! $? -eq 0 ]; then
   psql -h $DB_PORT_1337_TCP_ADDR -p $DB_PORT_1337_TCP_PORT -U postgres -t template1 --quiet -t -f- << EOF > /dev/null
     CREATE USER $PG_ROLE_NAME;
