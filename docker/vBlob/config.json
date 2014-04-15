@@ -4,7 +4,7 @@
       "fs-1": {
         "type": "fs",
         "option": {
-          "root": "/opt/data/blobs"
+          "root": "/opt/binaries"
         }
       }
     }

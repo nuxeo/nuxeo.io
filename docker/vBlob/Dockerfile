@@ -35,5 +35,7 @@ RUN git clone https://github.com/cloudfoundry-attic/vblob
 WORKDIR vblob
 ADD config.json /vblob/config.json
 
+EXPOSE 9981
+
 # Start vBlob
 CMD ["/usr/bin/node", "server.js"]

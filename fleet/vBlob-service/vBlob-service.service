@@ -1,0 +1,12 @@
+[Unit]
+Description=vBlob service
+Requires=docker-registry.service
+After=docker-registry.service
+
+[Service]
+TimeoutStartSec=0
+Environment='VBLOB_NAME=vBlob-service' 'S3_SERVICE=s3'
+ExecStartPre=/bin/sh /opt/data/fleet/vBlob-service/start-pre.sh
+ExecStart=/bin/sh /opt/data/fleet/vBlob-service/start.sh
+ExecStartPost=/bin/sh /opt/data/fleet/vBlob-service/start-post.sh
+ExecStop=/bin/sh /opt/data/fleet/vBlob-service/stop.sh
