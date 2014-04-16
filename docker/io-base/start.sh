@@ -13,9 +13,7 @@ if [ ! $? -eq 0 ]; then
 EOF
 fi
 
-psql -h $DB_PORT_1337_TCP_ADDR -p $DB_PORT_1337_TCP_PORT -U postgres -t template1 --quiet -t -f- << EOF > /dev/null
-    ALTER USER $PG_ROLE_NAME WITH PASSWORD '$PG_PWD';
-EOF
+echo "ALTER USER $PG_ROLE_NAME WITH PASSWORD '$PG_PWD';" | psql -h $DB_PORT_1337_TCP_ADDR -p $DB_PORT_1337_TCP_PORT -U postgres
 
 NUXEO_CONF=$NUXEO_HOME/bin/nuxeo.conf
 perl -p -i -e "s/^#?(nuxeo.templates=.*$)/\1,postgresql/g" $NUXEO_CONF
