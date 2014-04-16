@@ -18,6 +18,7 @@ if [ ! -d "/opt/db/nuxeodb" ]; then
     perl -p -i -e "s/^#?lc_time\s*=.*$/lc_time = 'en_US.UTF-8'/" $pgconf
     perl -p -i -e "s/^#?log_line_prefix\s*=.*$/log_line_prefix = '%t [%p]: [%l-1] '/" $pgconf
     perl -p -i -e "s/^#?listen_addresses\s*=.*$/listen_addresses = '*'/" $pgconf
+    perl -p -i -e "s/^#?log_hostname.*$/log_hostname = off/" $pgconf
 
     cp /root/pg_hba.conf /opt/db/nuxeodb/pg_hba.conf
 fi
