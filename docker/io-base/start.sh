@@ -21,9 +21,9 @@ NUXEO_CONF=$NUXEO_HOME/bin/nuxeo.conf
 perl -p -i -e "s/^#?(nuxeo.templates=.*$)/\1,postgresql/g" $NUXEO_CONF
 perl -p -i -e "s/^#?nuxeo.db.host=.*$/nuxeo.db.host=$DB_PORT_1337_TCP_ADDR/g" $NUXEO_CONF
 perl -p -i -e "s/^#?nuxeo.db.port=.*$/nuxeo.db.port=$DB_PORT_1337_TCP_PORT/g" $NUXEO_CONF
-perl -p -i -e "s/^#?nuxeo.db.name=.*$/nuxeo.db.name$PG_DB_NAME/g" $NUXEO_CONF
+perl -p -i -e "s/^#?nuxeo.db.name=.*$/nuxeo.db.name=$PG_DB_NAME/g" $NUXEO_CONF
 perl -p -i -e "s/^#?nuxeo.db.user=.*$/nuxeo.db.user=$PG_ROLE_NAME/g" $NUXEO_CONF
-perl -p -i -e "s/^#?nuxeo.db.password=.*$/nuxeo.db.password$PG_PWD/g" $NUXEO_CONF
+perl -p -i -e "s/^#?nuxeo.db.password=.*$/nuxeo.db.password=$PG_PWD/g" $NUXEO_CONF
 
 # Start nuxeo
 su $NUXEO_USER -m -c "$NUXEOCTL --quiet console"
