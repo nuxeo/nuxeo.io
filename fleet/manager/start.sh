@@ -6,6 +6,6 @@ do
     sleep 2
 done
 
-PG_PWD=`openssl rand -base64 20`
+PG_PWD=`openssl rand -hex 15`
 REGISTRY=`/usr/bin/etcdctl get /docker/registry`
 /usr/bin/docker run --rm -P -t --name ${MANAGER_NAME} --link ${POSTGRES_AMB}:db -e PG_DB_NAME=${MANAGER_NAME} -e PG_ROLE_NAME=${MANAGER_NAME} -e PG_PWD=${PG_PWD} -e PGPASSWORD=nuxeoiopostgres ${REGISTRY}/nuxeo/manager
