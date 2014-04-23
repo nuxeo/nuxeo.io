@@ -1,9 +1,6 @@
 #!/bin/sh -x
 
 # Nuxeo setup
-nuxeouid=$(grep nuxeo /etc/passwd | cut -d: -f3)
-nuxeogid=$(grep nuxeo /etc/passwd | cut -d: -f4)
-
 wget -q "http://www.nuxeo.org/static/latest-snapshot/nuxeo,tomcat,zip,5.9" -O /tmp/nuxeo-distribution-tomcat.zip
 wget -q "http://www.nuxeo.org/static/latest-io-snapshot/marketplace,nuxeo,io,zip,1.0" -O /tmp/marketplace-nuxeo.io.zip
 
@@ -19,10 +16,10 @@ mkdir -p /var/lib/nuxeo
 mkdir -p /var/log/nuxeo
 mkdir -p /var/run/nuxeo
 
-chown -R $nuxeouid:$nuxeogid /var/lib/nuxeo
-chown -R $nuxeouid:$nuxeogid /var/log/nuxeo
-chown -R $nuxeouid:$nuxeogid /var/run/nuxeo
-chown -R $nuxeouid:$nuxeogid /tmp/marketplace-nuxeo.io.zip
+chown -R $NUXEO_USER:$NUXEO_USER /var/lib/nuxeo
+chown -R $NUXEO_USER:$NUXEO_USER /var/log/nuxeo
+chown -R $NUXEO_USER:$NUXEO_USER /var/run/nuxeo
+chown -R $NUXEO_USER:$NUXEO_USER /tmp/marketplace-nuxeo.io.zip
 
 cat << EOF >> $NUXEO_HOME/bin/nuxeo.conf
 nuxeo.log.dir=/var/log/nuxeo
