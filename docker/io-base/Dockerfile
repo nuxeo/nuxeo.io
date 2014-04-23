@@ -9,9 +9,6 @@ MAINTAINER Nuxeo <contact@nuxeo.com>
 RUN locale-gen --no-purge en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
-# Update package manager
-RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
-
 # Update all packages
 RUN apt-get update
 
@@ -33,10 +30,8 @@ RUN rm -rf /var/lib/dpkg/info/fuse.postinst
 RUN apt-get -y install fuse
 
 # Install Nuxeo Dependencies
-# RUN sudo apt-get install -y acpid openjdk-7-jdk libreoffice imagemagick poppler-utils ffmpeg ffmpeg2theora ufraw libwpd-tools perl locales pwgen dialog supervisor unzip vim
-RUN sudo apt-get install -y openjdk-7-jdk perl locales pwgen supervisor postgresql-client-9.3 unzip vim openssh-server curl zip unzip
-
-RUN mkdir -p /var/log/supervisor
+# RUN sudo apt-get install -y acpid openjdk-7-jdk libreoffice imagemagick poppler-utils ffmpeg ffmpeg2theora ufraw libwpd-tools perl locales pwgen dialog unzip vim
+RUN sudo apt-get install -y openjdk-7-jdk perl locales pwgen postgresql-client-9.3 vim openssh-server curl zip unzip
 
 # Create Nuxeo user
 RUN useradd -m -d /home/nuxeo -p nuxeo nuxeo && adduser nuxeo sudo && chsh -s /bin/bash nuxeo

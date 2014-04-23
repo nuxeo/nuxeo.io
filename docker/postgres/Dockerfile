@@ -9,9 +9,6 @@ MAINTAINER Nuxeo <contact@nuxeo.com>
 RUN locale-gen --no-purge en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
-# Update package manager
-RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
-
 # Update all packages
 RUN apt-get update
 
