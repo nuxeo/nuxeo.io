@@ -29,7 +29,7 @@ echo "nuxeo.core.binarymanager=org.nuxeo.ecm.core.storage.sql.S3BinaryManager" >
 echo "nuxeo.s3storage.bucket=$S3_BUCKET" >> $NUXEO_CONF
 echo "nuxeo.s3storage.awsid=$S3_AWSID" >> $NUXEO_CONF
 echo "nuxeo.s3storage.awssecret=$S3_AWSSECRET" >> $NUXEO_CONF
-echo "nuxeo.s3storage.endpoint=$S3_PORT_1337_TCP_ADDR:$S3_PORT_1337_TCP_PORT" >> $NUXEO_CONF
+echo "nuxeo.s3storage.endpoint=http://$S3_PORT_1337_TCP_ADDR:$S3_PORT_1337_TCP_PORT" >> $NUXEO_CONF
 echo "nuxeo.s3storage.region=$S3_REGION" >> $NUXEO_CONF
 
 # Start nuxeo
