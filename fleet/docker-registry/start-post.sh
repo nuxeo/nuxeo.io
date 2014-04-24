@@ -17,4 +17,4 @@ REGISTRY_IP=`/opt/data/tools/resolve-ip.sh`
 echo "put registry information in etcd"
 
 
-/usr/bin/etcdctl set /services/docker-registry/1 \{\"host\":\"$REGISTRY_IP\",\"port\":$REGISTRY_PORT\}
+/usr/bin/etcdctl set /services/docker-registry/1/location \{\"host\":\"$REGISTRY_IP\",\"port\":$REGISTRY_PORT\}

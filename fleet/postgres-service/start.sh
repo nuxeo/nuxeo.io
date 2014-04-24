@@ -1,6 +1,6 @@
 #!/bin/sh
 
-REGISTRY=`/usr/bin/etcdctl get /docker/registry`
+REGISTRY=`etcdctl get /services/docker-registry/1/location | sed -e 's/{"host":"\([^"]*\)","port":\([^"]*\)}/\1\:\2/'`
 
 /usr/bin/docker ps --all | grep ${POSTGRES_NAME}
 if [ ! $? -eq 0 ]; then
