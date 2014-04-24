@@ -15,12 +15,22 @@ fi
 echo "ALTER USER $PG_ROLE_NAME WITH PASSWORD '$PG_PWD';" | psql -h $DB_PORT_1337_TCP_ADDR -p $DB_PORT_1337_TCP_PORT -U postgres
 
 NUXEO_CONF=$NUXEO_HOME/bin/nuxeo.conf
+
+# PostgreSQL conf
 perl -p -i -e "s/^#?(nuxeo.templates=.*$)/\1,postgresql/g" $NUXEO_CONF
 perl -p -i -e "s/^#?nuxeo.db.host=.*$/nuxeo.db.host=$DB_PORT_1337_TCP_ADDR/g" $NUXEO_CONF
 perl -p -i -e "s/^#?nuxeo.db.port=.*$/nuxeo.db.port=$DB_PORT_1337_TCP_PORT/g" $NUXEO_CONF
 perl -p -i -e "s/^#?nuxeo.db.name=.*$/nuxeo.db.name=$PG_DB_NAME/g" $NUXEO_CONF
 perl -p -i -e "s/^#?nuxeo.db.user=.*$/nuxeo.db.user=$PG_ROLE_NAME/g" $NUXEO_CONF
 perl -p -i -e "s/^#?nuxeo.db.password=.*$/nuxeo.db.password=$PG_PWD/g" $NUXEO_CONF
+
+# S3 conf
+echo "nuxeo.core.binarymanager=org.nuxeo.ecm.core.storage.sql.S3BinaryManager" >> $NUXEO_CONF
+echo "nuxeo.s3storage.bucket=$S3_BUCKET" >> $NUXEO_CONF
+echo "nuxeo.s3storage.awsid=$S3_AWSID" >> $NUXEO_CONF
+echo "nuxeo.s3storage.awssecret=$S3_AWSSECRET" >> $NUXEO_CONF
+echo "nuxeo.s3storage.endpoint=$S3_PORT_1337_TCP_ADDR:$S3_PORT_1337_TCP_PORT" >> $NUXEO_CONF
+echo "nuxeo.s3storage.region=$S3_REGION" >> $NUXEO_CONF
 
 # Start nuxeo
 su $NUXEO_USER -m -c "$NUXEOCTL --quiet console"
