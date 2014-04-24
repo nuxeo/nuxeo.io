@@ -4,10 +4,10 @@
 
 PORT=`docker port $VBLOB_NAME 9981 | awk -F : '{print $2}'`
 
-/opt/data/tools/register-service.sh $S3_SERVICE $PORT
+# wake up the binded port
+echo "wake up" | ncat 127.0.0.1 $PORT
 
-# Create the bucket on vBlob
-/opt/data/tools/create-vblob-bucket.sh $BUCKET_NAME
+/opt/data/tools/register-service.sh $S3_SERVICE $PORT
 
 # Write config entries
 /usr/bin/etcdctl set /config/s3/bucket $BUCKET_NAME
