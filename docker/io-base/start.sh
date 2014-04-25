@@ -32,5 +32,11 @@ echo "nuxeo.s3storage.awssecret=$S3_AWSSECRET" >> $NUXEO_CONF
 echo "nuxeo.s3storage.endpoint=http://$S3_PORT_1337_TCP_ADDR:$S3_PORT_1337_TCP_PORT" >> $NUXEO_CONF
 echo "nuxeo.s3storage.region=$S3_REGION" >> $NUXEO_CONF
 
+# nuxeo.url
+echo "nuxeo.url=http://$DOMAIN/nuxeo" >> $NUXEO_CONF
+
+# org.nuxeo.io.defaultDnsSuffix
+echo "org.nuxeo.io.defaultDnsSuffix=$DEFAULT_DNS_SUFFIX" >> $NUXEO_CONF
+
 # Start nuxeo
 su $NUXEO_USER -m -c "$NUXEOCTL --quiet console"
