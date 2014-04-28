@@ -22,5 +22,5 @@ DEFAULT_DNS_SUFFIX=`/usr/bin/etcdctl get /config/manager/defaultDnsSuffix`
   -e PGPASSWORD=nuxeoiopostgres \
   -e S3_BUCKET=${S3_BUCKET} -e S3_AWSID=${S3_AWSID} -e S3_AWSSECRET=${S3_AWSSECRET} -e S3_REGION=${S3_REGION} \
   -e DOMAIN=${MANAGER_DOMAIN} \
-  -e DEFAULT_DNS_SUFFIX=${DEFAULT_DNS_SUFFIX}
+  -e DEFAULT_DNS_SUFFIX=${DEFAULT_DNS_SUFFIX} \
   ${REGISTRY}/nuxeo/manager
