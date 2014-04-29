@@ -45,6 +45,11 @@ fi
 # instance.clid
 printf "%b\n" "$CLID" >> $NUXEO_HOME/nxserver/data/instance.clid
 
+# Install packages if exist
+if [ ! -z "$PACKAGES" ]; then
+  su $NUXEO_USER -m -c "$NUXEOCTL --quiet mp-install $PACKAGES"
+fi
+
 # Start nuxeo
 su $NUXEO_USER -m -c "$NUXEOCTL --quiet start"
 su $NUXEO_USER -m -c "tail -f /var/log/nuxeo/server.log"

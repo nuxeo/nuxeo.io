@@ -14,6 +14,11 @@ if [ ! $? -eq 0 ]; then
   CONNECT_URL=""
 fi
 
+PACKAGES=`/usr/bin/etcdctl get /envs/${ENV_TECH_ID}/config/packages`
+if [ ! $? -eq 0 ]; then
+  PACKAGES=""
+fi
+
 /usr/bin/docker run --rm -P -t --name ${ENV_TECH_ID} \
   --link ${POSTGRES_AMB}:db \
   --link ${S3_AMB}:s3 \
@@ -24,4 +29,5 @@ fi
   -e DOMAIN="${DOMAIN}" \
   -e CLID="${CLID}" \
   -e CONNECT_URL="${CONNECT_URL}" \
+  -e PACKAGES="${PACKAGES}" \
   ${DOCKER_REGISTRY}/nuxeo/iocontainer
