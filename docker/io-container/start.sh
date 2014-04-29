@@ -14,6 +14,8 @@ fi
 
 echo "ALTER USER $PG_ROLE_NAME WITH PASSWORD '$PG_PWD';" | psql -h $DB_PORT_1337_TCP_ADDR -p $DB_PORT_1337_TCP_PORT -U postgres
 
+unset PGPASSWORD
+
 NUXEO_CONF=$NUXEO_HOME/bin/nuxeo.conf
 
 # PostgreSQL conf
@@ -35,8 +37,14 @@ echo "nuxeo.s3storage.region=$S3_REGION" >> $NUXEO_CONF
 # nuxeo.url
 echo "nuxeo.url=http://$DOMAIN/nuxeo" >> $NUXEO_CONF
 
-# org.nuxeo.io.defaultDnsSuffix
-echo "org.nuxeo.io.defaultDnsSuffix=$DEFAULT_DNS_SUFFIX" >> $NUXEO_CONF
+# connect.url
+if [ ! -z "$CONNECT_URL" ]; then
+  echo "org.nuxeo.connect.url=$CONNECT_URL" >> $NUXEO_CONF
+fi
+
+# instance.clid
+printf "%b\n" "$CLID" >> $NUXEO_HOME/nxserver/data/instance.clid
 
 # Start nuxeo
-su $NUXEO_USER -m -c "$NUXEOCTL --quiet console"
+su $NUXEO_USER -m -c "$NUXEOCTL --quiet start"
+su $NUXEO_USER -m -c "tail -f /var/log/nuxeo/server.log"

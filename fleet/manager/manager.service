@@ -6,7 +6,7 @@ After=build-io-base.service postgres-service.service
 [Service]
 TimeoutStartSec=0
 RemainAfterExit=yes
-Environment='MANAGER_NAME=manager' 'MANAGER_DOMAIN=manager.trial.nuxeo.io'
+Environment='MANAGER_NAME=manager'
 ExecStartPre=/bin/sh /opt/data/fleet/manager/start-pre.sh
 ExecStart=/bin/sh /opt/data/fleet/manager/start.sh
 ExecStartPost=/bin/sh /opt/data/fleet/manager/start-post.sh

@@ -39,9 +39,6 @@ ENV NUXEO_USER nuxeo
 ENV NUXEO_HOME /var/lib/nuxeo/server
 ENV NUXEOCTL /var/lib/nuxeo/server/bin/nuxeoctl
 
-# Copy scripts
-ADD start.sh /root/start.sh
-
 # Expose default Tomcat and SSH ports
 EXPOSE 8080 22
 

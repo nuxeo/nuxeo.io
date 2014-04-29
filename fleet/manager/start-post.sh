@@ -5,5 +5,6 @@ do
     sleep 2
 done
 
-/usr/bin/etcdctl set /domains/$MANAGER_DOMAIN/type uri
-/usr/bin/etcdctl set /domains/$MANAGER_DOMAIN/value http://`/opt/data/tools/resolve-ip.sh`:`docker port $MANAGER_NAME 8080 | awk -F : '{print $2}'`
+DOMAIN=`/usr/bin/etcdctl get /services/manager/domain`
+/usr/bin/etcdctl set /domains/$DOMAIN/type uri
+/usr/bin/etcdctl set /domains/$DOMAIN/value http://`/opt/data/tools/resolve-ip.sh`:`docker port $MANAGER_NAME 8080 | awk -F : '{print $2}'`

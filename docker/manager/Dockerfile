@@ -8,6 +8,7 @@ MAINTAINER Nuxeo <contact@nuxeo.com>
 # Copy scripts
 ADD fleet-install.sh /root/fleet-install.sh
 ADD nuxeo-install.sh /root/nuxeo-install.sh
+ADD start.sh /root/start.sh
 
 # Download & Install fleetctl
 RUN /bin/bash /root/fleet-install.sh
