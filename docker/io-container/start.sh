@@ -43,7 +43,7 @@ if [ ! -z "$CONNECT_URL" ]; then
 fi
 
 # instance.clid
-printf "%b\n" "$CLID" >> $NUXEO_HOME/nxserver/data/instance.clid
+printf "%b\n" "$CLID" >> /var/lib/nuxeo/data/instance.clid
 
 # Install packages if exist
 if [ ! -z "$PACKAGES" ]; then
