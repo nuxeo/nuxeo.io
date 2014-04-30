@@ -26,3 +26,6 @@ nuxeo.pid.dir=/var/run/nuxeo
 nuxeo.data.dir=/var/lib/nuxeo/data
 nuxeo.wizard.done=true
 EOF
+
+echo 'mp-init'
+su $NUXEO_USER -m -c "$NUXEOCTL mp-init"
