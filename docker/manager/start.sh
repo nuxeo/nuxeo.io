@@ -8,7 +8,8 @@ psql -h $DB_PORT_1337_TCP_ADDR -p $DB_PORT_1337_TCP_PORT -U postgres -t template
 if [ ! $? -eq 0 ]; then
   psql -h $DB_PORT_1337_TCP_ADDR -p $DB_PORT_1337_TCP_PORT -U postgres -t template1 --quiet -t -f- << EOF > /dev/null
     CREATE USER $PG_ROLE_NAME;
-    CREATE DATABASE $PG_DB_NAME ENCODING 'UTF8' OWNER $PG_ROLE_NAME;
+    CREATE DATABASE $PG_DB_NAME ENCODING 'UTF8';
+    ALTER DATABASE $PG_DB_NAME OWNER TO $PG_ROLE_NAME;
 EOF
 fi
 
