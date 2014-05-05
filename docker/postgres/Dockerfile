@@ -25,7 +25,7 @@ RUN apt-get update
 RUN apt-get upgrade -y
 
 # Install PostgreSQL
-RUN sudo apt-get install -y postgresql-9.3
+RUN apt-get install -y postgresql-9.3
 
 # Copy scripts
 ADD start.sh /root/start.sh
