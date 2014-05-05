@@ -11,3 +11,5 @@ ADD start.sh /root/start.sh
 
 # Download & Install Nuxeo
 RUN /bin/bash /root/nuxeo-install.sh
+
+CMD ["/root/start.sh"]

@@ -44,5 +44,3 @@ EXPOSE 8080 22
 
 RUN mkdir -p /var/run/sshd
 RUN echo 'root:nuxeoiocontainer' | chpasswd
-
-CMD ["/root/start.sh"]
