@@ -16,7 +16,7 @@ fi
 
 PACKAGES=`/usr/bin/etcdctl get /envs/${ENV_TECH_ID}/config/packages`
 if [ ! $? -eq 0 ]; then
-  PACKAGES=""
+  PACKAGES="nuxeo-dm nuxeo-dam nuxeo-drive nuxeo-template-rendering nuxeo-csv nuxeo-web-mobile-dm"
 fi
 
 /usr/bin/docker run --rm -P -t --name ${ENV_TECH_ID} \
