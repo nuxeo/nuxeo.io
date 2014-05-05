@@ -13,6 +13,7 @@ rm -rf /tmp/nuxeo-distribution*
 chmod +x $NUXEO_HOME/bin/nuxeoctl
 
 mkdir -p /var/lib/nuxeo
+mkdir -p /var/lib/nuxeo/data
 mkdir -p /var/log/nuxeo
 mkdir -p /var/run/nuxeo
 
