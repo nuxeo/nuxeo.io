@@ -27,5 +27,5 @@ nuxeo.data.dir=/var/lib/nuxeo/data
 nuxeo.wizard.done=true
 EOF
 
-echo 'mp-init'
-su $NUXEO_USER -m -c "$NUXEOCTL mp-init"
+# move installAfterRestart.log to correct data folder
+mv $NUXEO_HOME/nxserver/data/installAfterRestart.log /var/lib/nuxeo/data/
