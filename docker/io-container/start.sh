@@ -30,6 +30,7 @@ perl -p -i -e "s/^#?nuxeo.db.password=.*$/nuxeo.db.password=$PG_PWD/g" $NUXEO_CO
 # S3 conf
 echo "nuxeo.core.binarymanager=org.nuxeo.ecm.core.storage.sql.S3BinaryManager" >> $NUXEO_CONF
 echo "nuxeo.s3storage.bucket=$S3_BUCKET" >> $NUXEO_CONF
+echo "nuxeo.s3storage.bucket.prefix=$S3_BUCKET_PREFIX" >> $NUXEO_CONF
 echo "nuxeo.s3storage.awsid=$S3_AWSID" >> $NUXEO_CONF
 echo "nuxeo.s3storage.awssecret=$S3_AWSSECRET" >> $NUXEO_CONF
 echo "nuxeo.s3storage.endpoint=http://$S3_PORT_1337_TCP_ADDR:$S3_PORT_1337_TCP_PORT" >> $NUXEO_CONF
