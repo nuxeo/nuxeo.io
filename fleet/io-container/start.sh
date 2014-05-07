@@ -3,6 +3,7 @@
 POSTGRES_AMB=postgres-amb
 S3_AMB=s3-amb
 PG_PWD=`openssl rand -hex 15`
+REGISTRY=`/usr/bin/etcdctl get /docker/registry`
 S3_BUCKET=`/usr/bin/etcdctl get /config/s3/bucket`
 S3_BUCKET_PREFIX=`/usr/bin/etcdctl get /config/s3/bucket.prefix`
 S3_AWSID=`/usr/bin/etcdctl get /config/s3/awsid`
@@ -31,4 +32,4 @@ fi
   -e CLID="${CLID}" \
   -e CONNECT_URL="${CONNECT_URL}" \
   -e PACKAGES="${PACKAGES}" \
-  ${DOCKER_REGISTRY}/nuxeo/iocontainer
+  ${REGISTRY}/nuxeo/iocontainer
