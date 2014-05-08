@@ -1,3 +1,3 @@
 #!/bin/sh
 
-/usr/bin/etcdctl set /envs/$ENV_TECH_ID/status/current starting
+/usr/bin/etcdctl set /services/$ENV_TECH_ID/1/status/current starting
