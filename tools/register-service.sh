@@ -13,4 +13,4 @@ else
   SERVICE_IP=`/opt/data/tools/resolve-ip.sh`
 fi
 
-/usr/bin/etcdctl set /services/$SERVICE_NAME/1 \{\"host\":\"$SERVICE_IP\",\"port\":$SERVICE_PORT\}
+/usr/bin/etcdctl set /services/$SERVICE_NAME/1/location \{\"host\":\"$SERVICE_IP\",\"port\":$SERVICE_PORT\}
