@@ -8,7 +8,7 @@ do
 done
 
 PG_PWD=`openssl rand -hex 15`
-REGISTRY=`/usr/bin/etcdctl get /docker/registry`
+REGISTRY=`etcdctl get /services/docker-registry/1/location | sed -e 's/{"host":"\([^"]*\)","port":\([^"]*\)}/\1\:\2/'`
 S3_BUCKET=`/usr/bin/etcdctl get /config/s3/bucket`
 S3_BUCKET_PREFIX=`/usr/bin/etcdctl get /config/s3/bucket.prefix`
 S3_AWSID=`/usr/bin/etcdctl get /config/s3/awsid`
