@@ -1,6 +1,5 @@
 [Unit]
 Description=vblob service
-Requires=docker-registry.service
 After=docker-registry.service
 
 [Service]

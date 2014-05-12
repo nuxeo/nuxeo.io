@@ -1,6 +1,5 @@
 [Unit]
 Description=Build iobase Docker image
-Requires=docker-registry.service
 After=docker-registry.service
 
 [Service]
