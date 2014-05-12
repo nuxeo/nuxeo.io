@@ -25,4 +25,4 @@ RUN go get
 RUN go build
 
 EXPOSE 7777
-CMD gogeta -etcdAddress "http://172.17.42.1:4001" -domainDir "/domains" -envDir "/services"
+CMD gogeta -etcdAddress="http://172.17.42.1:4001" -domainDir="/domains" -envDir="/services" -templateDir="/usr/local/go/src/github.com/nuxeo/gogeta/templates"
