@@ -3,8 +3,9 @@ Description=Docker registry
 
 [Service]
 TimeoutStartSec=0
-RemainAfterExit=yes
 Environment='REGISTRY_NAME=docker-registry' 'REGISTRY_VERSION=0.6.5'
 ExecStartPre=/bin/sh /opt/data/fleet/docker-registry/start-pre.sh
 ExecStart=/bin/sh /opt/data/fleet/docker-registry/start.sh
 ExecStartPost=/bin/sh /opt/data/fleet/docker-registry/start-post.sh
+Restart=always
+RestartSec=10s

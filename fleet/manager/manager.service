@@ -10,7 +10,6 @@ ExecStartPre=/bin/sh /opt/data/fleet/manager/start-pre.sh
 ExecStart=/bin/sh /opt/data/fleet/manager/start.sh
 ExecStartPost=/bin/sh /opt/data/fleet/manager/start-post.sh
 ExecStop=/opt/data/fleet/manager/stop.sh
-
 Restart=always
 RestartSec=10s
 
