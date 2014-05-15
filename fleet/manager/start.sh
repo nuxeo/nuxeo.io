@@ -19,9 +19,19 @@ DEFAULT_DNS_SUFFIX=`/usr/bin/etcdctl get /services/manager/defaultDnsSuffix`
 if [ ! $? -eq 0 ]; then
   DEFAULT_DNS_SUFFIX=""
 fi
+
 CONNECT_URL=`/usr/bin/etcdctl get /config/connect/url`
 if [ ! $? -eq 0 ]; then
   CONNECT_URL=""
+fi
+
+OAUTH=`/usr/bin/etcdctl get /config/manager/oauth`
+if [ $? -eq 0 ]; then
+  OAUTH_CONSUMER_KEY=`echo $OAUTH | sed -e 's/{"key":"\([^"]*\)","secret":"\([^"]*\)"}/\1/'`
+  OAUTH_CONSUMER_SECRET=`echo $OAUTH | sed -e 's/{"key":"\([^"]*\)","secret":"\([^"]*\)"}/\2/'`
+else
+  OAUTH_CONSUMER_KEY=""
+  OAUTH_CONSUMER_SECRET=""
 fi
 
 /usr/bin/docker run --rm -P -t --name ${MANAGER_NAME} \
@@ -33,4 +43,5 @@ fi
   -e DOMAIN="${DOMAIN}" \
   -e DEFAULT_DNS_SUFFIX="${DEFAULT_DNS_SUFFIX}" \
   -e CONNECT_URL="${CONNECT_URL}" \
+  -e OAUTH_CONSUMER_KEY="${OAUTH_CONSUMER_KEY}" -e OAUTH_CONSUMER_SECRET="${OAUTH_CONSUMER_SECRET}" \
   ${REGISTRY}/nuxeo/manager

@@ -46,6 +46,12 @@ if [ ! -z "$DEFAULT_DNS_SUFFIX" ]; then
   echo "org.nuxeo.io.defaultDnsSuffix=$DEFAULT_DNS_SUFFIX" >> $NUXEO_CONF
 fi
 
+# io.oauth.consumer.key/secret
+if [ ! -z "$OAUTH_CONSUMER_KEY" ]; then
+  echo "io.oauth.consumer.key=$OAUTH_CONSUMER_KEY" >> $NUXEO_CONF
+  echo "io.oauth.consumer.secret=$OAUTH_CONSUMER_SECRET" >> $NUXEO_CONF
+fi
+
 # connect.url
 if [ ! -z "$CONNECT_URL" ]; then
   echo "org.nuxeo.connect.url=$CONNECT_URL" >> $NUXEO_CONF
