@@ -1,7 +1,5 @@
 [Unit]
 Description=Build iocontainer Docker image
-Requires=build-io-base.service
-After=build-io-base.service
 
 [Service]
 Type=oneshot

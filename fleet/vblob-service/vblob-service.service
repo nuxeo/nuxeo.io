@@ -1,6 +1,5 @@
 [Unit]
 Description=vblob service
-After=docker-registry.service
 
 [Service]
 TimeoutStartSec=0
