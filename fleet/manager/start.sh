@@ -14,8 +14,8 @@ S3_BUCKET_PREFIX=`/usr/bin/etcdctl get /config/s3/bucket.prefix`
 S3_AWSID=`/usr/bin/etcdctl get /config/s3/awsid`
 S3_AWSSECRET=`/usr/bin/etcdctl get /config/s3/awssecret`
 S3_REGION=`/usr/bin/etcdctl get /config/s3/region`
-DOMAIN=`/usr/bin/etcdctl get /services/manager/domain`
-DEFAULT_DNS_SUFFIX=`/usr/bin/etcdctl get /services/manager/defaultDnsSuffix`
+DOMAIN=`/usr/bin/etcdctl get /services/manager/config/domain`
+DEFAULT_DNS_SUFFIX=`/usr/bin/etcdctl get /services/manager/config/defaultDnsSuffix`
 if [ ! $? -eq 0 ]; then
   DEFAULT_DNS_SUFFIX=""
 fi
