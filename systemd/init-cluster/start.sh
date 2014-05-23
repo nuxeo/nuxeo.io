@@ -1,13 +1,5 @@
 #!/bin/sh
 
-echo "Retrieving Github scripts"
-mkdir -p /opt/data
-if [ ! -d /opt/data/.git ]; then
-  git clone https://github.com/nuxeo/nuxeo.io-scripts.git /opt/data
-else
-  cd /opt/data && sudo git pull --rebase
-fi
-
 # gogeta
 echo "Building 'gogeta' image"
 /usr/bin/docker build -t nuxeo/gogeta /opt/data/docker/reverse-proxy
