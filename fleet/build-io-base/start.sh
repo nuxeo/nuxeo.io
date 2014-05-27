@@ -1,9 +1,8 @@
 #!/bin/sh
 
-
 REGISTRY=`etcdctl get /services/docker-registry/1/location | sed -e 's/{"host":"\([^"]*\)","port":\([^"]*\)}/\1\:\2/'`
 
-sudo git pull --rebase /opt/data/
+cd /opt/data && sudo git pull --rebase
 /usr/bin/docker build --no-cache -t nuxeo/iobase /opt/data/docker/io-base/
 
 # Tag and push iobase on registry
