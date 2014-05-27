@@ -5,6 +5,9 @@ REGISTRY=`etcdctl get /services/docker-registry/1/location | sed -e 's/{"host":"
 docker images | grep  "^nuxeo/manager"
 if [ ! $? -eq 0 ]; then
   echo "building image..."
+  # copy the coreos fleetctl binary for the manager
+  cp /usr/bin/fleetctl /opt/data/docker/manager/fleetctl
+
   /usr/bin/docker build -t nuxeo/manager /opt/data/docker/manager/
 fi
 # Tag and push container on registry
