@@ -19,10 +19,10 @@ RUN wget --no-verbose https://go.googlecode.com/files/go1.2.1.src.tar.gz
 RUN tar -v -C /usr/local -xzf go1.2.1.src.tar.gz
 RUN cd /usr/local/go/src && ./make.bash --no-clean 2>&1
 
-RUN go get github.com/nuxeo/gogeta
-WORKDIR /usr/local/go/src/github.com/nuxeo/gogeta
+RUN go get github.com/arkenio/gogeta
+WORKDIR /usr/local/go/src/github.com/arkenio/gogeta
 RUN go get
 RUN go build
 
 EXPOSE 7777
-CMD gogeta -etcdAddress="http://172.17.42.1:4001" -templateDir="/usr/local/go/src/github.com/nuxeo/gogeta/templates" -alsologtostderr=true
+CMD gogeta -etcdAddress="http://172.17.42.1:4001" -templateDir="/usr/local/go/src/github.com/arkenio/gogeta/templates" -alsologtostderr=true
