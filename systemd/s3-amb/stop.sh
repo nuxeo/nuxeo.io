@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker stop $S3_AMB_NAME
+docker kill $S3_AMB_NAME

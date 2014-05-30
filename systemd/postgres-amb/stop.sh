@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker stop $POSTGRES_AMB_NAME
+docker kill $POSTGRES_AMB_NAME

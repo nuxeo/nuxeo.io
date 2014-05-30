@@ -1,19 +1,11 @@
 #!/bin/sh
 
 # gogeta
-echo "Building 'gogeta' image"
-/usr/bin/docker build -t nuxeo/gogeta /opt/data/docker/reverse-proxy
-echo "Image 'gogeta' built"
 echo "Starting gogeta"
 /usr/bin/systemctl start gogeta.service
 echo "Started gogeta"
 
-
 # ambs
-echo "Building 'service-amb' image"
-/usr/bin/docker build -t nuxeo/service-amb /opt/data/docker/service-amb
-echo "Image 'service-amb' built"
-
 echo "Starting postgres amb"
 /usr/bin/systemctl start postgres-amb.service
 echo "Started postgres amb"
@@ -23,7 +15,6 @@ echo "Starting s3 amb"
 echo "Started s3 amb"
 
 # fleet units
-
 INITIALIZED=`/usr/bin/etcdctl get /arken.io/initialized`
 if [ $? -eq 0 ]; then
   exit 0

@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker stop $GOGETA_NAME
+docker kill $GOGETA_NAME
