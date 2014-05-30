@@ -19,8 +19,8 @@ RUN wget --no-verbose https://go.googlecode.com/files/go1.2.1.src.tar.gz
 RUN tar -v -C /usr/local -xzf go1.2.1.src.tar.gz
 RUN cd /usr/local/go/src && ./make.bash --no-clean 2>&1
 
-RUN go get github.com/nuxeo/etcd-netfw
-WORKDIR /usr/local/go/src/github.com/nuxeo/etcd-netfw
+RUN go get github.com/arkenio/etcd-netfw
+WORKDIR /usr/local/go/src/github.com/arkenio/etcd-netfw
 RUN go build
 
 # Expose default listening amb port
