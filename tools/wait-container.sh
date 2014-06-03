@@ -10,3 +10,5 @@ while ! docker ps | grep -q $1
 do
     sleep 2
 done
+
+sleep 3
