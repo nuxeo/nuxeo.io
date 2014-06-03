@@ -30,7 +30,6 @@ RUN rm -rf /var/lib/dpkg/info/fuse.postinst
 RUN apt-get -y install fuse
 
 # Install Nuxeo Dependencies
-# RUN sudo apt-get install -y acpid openjdk-7-jdk libreoffice imagemagick poppler-utils ffmpeg ffmpeg2theora ufraw libwpd-tools perl locales pwgen dialog unzip vim
 RUN sudo apt-get install -y openjdk-7-jdk perl locales pwgen postgresql-client-9.3 vim openssh-server curl zip unzip
 
 # Create Nuxeo user

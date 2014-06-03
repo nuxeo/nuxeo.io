@@ -5,6 +5,8 @@
 FROM       nuxeo/iobase
 MAINTAINER Nuxeo <contact@nuxeo.com>
 
+RUN sudo apt-get install -y libreoffice imagemagick poppler-utils ffmpeg ffmpeg2theora ufraw libwpd-tools ghostscript
+
 # Copy scripts
 ADD nuxeo-install.sh /root/nuxeo-install.sh
 ADD start.sh /root/start.sh
