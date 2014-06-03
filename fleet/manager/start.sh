@@ -34,6 +34,8 @@ else
   OAUTH_CONSUMER_SECRET=""
 fi
 
+/opt/data/tools/docker-clean.sh ${MANAGER_NAME} > /dev/null
+
 /usr/bin/docker run --rm -P -t --name ${MANAGER_NAME} \
   --link ${POSTGRES_AMB}:db \
   --link ${S3_AMB}:s3 \
