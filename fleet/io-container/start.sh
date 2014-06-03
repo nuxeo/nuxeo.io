@@ -23,7 +23,7 @@ if [ ! $? -eq 0 ]; then
 fi
 
 # Ensure to rm not correctly stopped container
-/opt/data/tools/docker-clean.sh ${ENV_TECH_ID} > /dev/null
+/opt/data/tools/docker-clean.sh ${ENV_TECH_ID} &> /dev/null
 
 REGISTRY=`etcdctl get /services/docker-registry/1/location | sed -e 's/{"host":"\([^"]*\)","port":\([^"]*\)}/\1\:\2/'`
 /usr/bin/docker pull ${REGISTRY}/nuxeo/iocontainer
