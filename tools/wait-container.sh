@@ -6,7 +6,7 @@ if [ $# -lt 1 ]; then
 fi
 
 # wait until container is running
-while ! docker ps | grep -q $1
+while ! docker ps | grep -q "$1[^/]"
 do
     sleep 2
 done
