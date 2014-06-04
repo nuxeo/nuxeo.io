@@ -12,9 +12,9 @@ if [ ! $? -eq 0 ]; then
 fi
 
 # wait until container is running
-while ! [ `fleetctl list-units | grep $1 | awk '{print $4}'` = "active" ]
+while ! [ `fleetctl list-units | grep $1 | awk '{print $3}'` = "active" ]
 do
     echo "Waiting $1 service to be active, current state:"
-    echo `fleetctl list-units | grep $1 | awk '{print $1,$2,$4}'`
+    echo `fleetctl list-units | grep $1 | awk '{print $1,$2,$3}'`
     sleep 60
 done
