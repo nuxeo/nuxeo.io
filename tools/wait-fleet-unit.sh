@@ -5,16 +5,16 @@ if [ $# -lt 1 ]; then
   exit 1
 fi
 
-fleetctl list-units | grep $1 > /dev/null
+fleetctl list-units --no-legend | grep $1 > /dev/null
 if [ ! $? -eq 0 ]; then
   echo "Unknown service"
   exit 2
 fi
 
 # wait until container is running
-while ! [ `fleetctl list-units | grep $1 | awk '{print $3}'` = "active" ]
+while ! [ `fleetctl list-units --no-legend -fields "unit,active" | grep $1 | awk '{print $2}'` = "active" ]
 do
     echo "Waiting $1 service to be active, current state:"
-    echo `fleetctl list-units | grep $1 | awk '{print $1,$2,$3}'`
+    echo `fleetctl list-units --no-legend -fields "unit,machine,sub,active" | grep $1`
     sleep 60
 done
