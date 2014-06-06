@@ -1,3 +1,4 @@
 #!/bin/sh
 
-docker stop $MANAGER_NAME
+docker kill $MANAGER_NAME
+/opt/data/tools/docker-clean.sh $MANAGER_NAME &> /dev/null

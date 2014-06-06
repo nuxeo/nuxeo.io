@@ -8,7 +8,8 @@ fi
 # wait until container is running
 while ! docker ps | grep -q "$1[^/]"
 do
-    sleep 2
+    echo "Waiting container $1..."
+    sleep 3
 done
 
-sleep 3
+sleep 2

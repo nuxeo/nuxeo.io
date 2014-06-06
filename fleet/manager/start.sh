@@ -2,10 +2,9 @@
 
 POSTGRES_AMB=postgres-amb
 S3_AMB=s3-amb
-while ! docker ps | grep -q $POSTGRES_AMB
-do
-    sleep 2
-done
+
+/opt/data/tools/wait-container.sh $POSTGRES_AMB
+/opt/data/tools/wait-container.sh $S3_AMB
 
 PG_PWD=`openssl rand -hex 15`
 REGISTRY=`etcdctl get /services/docker-registry/1/location | sed -e 's/{"host":"\([^"]*\)","port":\([^"]*\)}/\1\:\2/'`

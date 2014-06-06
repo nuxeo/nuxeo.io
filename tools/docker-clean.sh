@@ -2,7 +2,7 @@
 
 if [ $# -gt 0 ]; then
   # Ensure to rm not correctly stopped container
-  docker ps -a | grep $1
+  docker ps -a | grep "$1[^/]"
   if [ $? -eq 0 ]; then
     docker rm -f $1
   fi
