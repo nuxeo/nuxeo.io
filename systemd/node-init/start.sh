@@ -5,6 +5,11 @@ echo "Starting gogeta"
 /usr/bin/systemctl start gogeta.service
 echo "Started gogeta"
 
+# passivator
+echo "Starting passivator"
+/usr/bin/systemctl start passivator.service
+echo "Started passivator"
+
 # ambs
 echo "Starting postgres amb"
 /usr/bin/systemctl start postgres-amb.service
