@@ -1,0 +1,10 @@
+[Unit]
+Description=Services Activator/Passivator
+
+[Service]
+TimeoutStartSec=0
+Environment='PASSIVATOR_NAME=passivator'
+ExecStart=/bin/sh /opt/data/fleet/passivator/start.sh
+ExecStop=/bin/sh /opt/data/fleet/passivator/stop.sh
+Restart=always
+RestartSec=10s

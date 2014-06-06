@@ -7,6 +7,9 @@ if [ $? -eq 0 ]; then
 fi
 /usr/bin/etcdctl set /arken.io/initialized true
 
+fleetctl start /opt/data/fleet/passivator/passivator.service
+/opt/data/tools/wait-fleet-unit.sh passivator.service
+
 fleetctl start /opt/data/fleet/docker-registry/docker-registry.service
 /opt/data/tools/wait-fleet-unit.sh docker-registry.service
 
