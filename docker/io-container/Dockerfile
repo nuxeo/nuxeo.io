@@ -5,7 +5,11 @@
 FROM       nuxeo/iobase
 MAINTAINER Nuxeo <contact@nuxeo.com>
 
-RUN sudo apt-get install -y libreoffice imagemagick poppler-utils ffmpeg ffmpeg2theora ufraw libwpd-tools ghostscript
+RUN apt-get -q -y install imagemagick ffmpeg2theora ufraw poppler-utils libreoffice libwpd-tools gimp ghostscript
+WORKDIR /tmp
+RUN git clone https://github.com/nuxeo/ffmpeg-nuxeo.git
+ENV BUILD_YASM true
+RUN cd ffmpeg-nuxeo && ./build-all.sh true
 
 # Copy scripts
 ADD nuxeo-install.sh /root/nuxeo-install.sh
