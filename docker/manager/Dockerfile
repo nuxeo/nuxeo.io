@@ -5,6 +5,11 @@
 FROM       nuxeo/iobase
 MAINTAINER Nuxeo <contact@nuxeo.com>
 
+RUN apt-get update
+
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get -q -y upgrade
+
 # Copy scripts
 ADD nuxeo-install.sh /root/nuxeo-install.sh
 ADD start.sh /root/start.sh

@@ -5,7 +5,13 @@
 FROM       nuxeo/iobase
 MAINTAINER Nuxeo <contact@nuxeo.com>
 
-RUN apt-get -q -y install imagemagick ffmpeg2theora ufraw poppler-utils libreoffice libwpd-tools gimp ghostscript
+# Update all packages
+RUN apt-get update
+
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get -q -y upgrade
+
+RUN apt-get -q -y install git imagemagick ffmpeg2theora ufraw poppler-utils libreoffice libwpd-tools gimp ghostscript
 WORKDIR /tmp
 RUN git clone https://github.com/nuxeo/ffmpeg-nuxeo.git
 ENV BUILD_YASM true
