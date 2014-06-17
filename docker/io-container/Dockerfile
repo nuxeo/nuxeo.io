@@ -5,6 +5,8 @@
 FROM       nuxeo/iobase
 MAINTAINER Nuxeo <contact@nuxeo.com>
 
+RUN perl -p -i -e "s/universe/universe multiverse/g" /etc/apt/sources.list
+
 # Update all packages
 RUN apt-get update
 
