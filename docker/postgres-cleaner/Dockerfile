@@ -1,4 +1,4 @@
-# PostgreSQL Base image is a ubuntu precise image
+# PostgreSQL Cleaner
 #
 # VERSION               0.0.1
 
@@ -12,12 +12,12 @@ ENV LC_ALL en_US.UTF-8
 # Update all packages
 RUN apt-get update
 
+# Upgrade Ubuntu
+RUN apt-get upgrade -y
+
 # Install dependencies
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get install -y python-software-properties wget sudo net-tools
-
-# Upgrade Ubuntu
-RUN apt-get upgrade -y
 
 # Install PostgreSQL
 RUN apt-get install -y postgresql-client-9.3
