@@ -8,10 +8,11 @@ fi
 /usr/bin/etcdctl set /arken.io/initialized true
 
 fleetctl start /opt/data/fleet/passivator/passivator.service
-/opt/data/tools/wait-fleet-unit.sh passivator.service
 
 fleetctl start /opt/data/fleet/docker-registry/docker-registry.service
 /opt/data/tools/wait-fleet-unit.sh docker-registry.service
+
+fleetctl start /opt/data/fleet/build-cleaners/build-cleaners.service
 
 # start postgres and vblob only on Vagrant
 VIRT=`systemd-detect-virt`
@@ -31,3 +32,4 @@ fleetctl start /opt/data/fleet/build-io-container/build-io-container.service
 
 fleetctl start /opt/data/fleet/manager/manager.service
 /opt/data/tools/wait-fleet-unit.sh manager.service
+/opt/data/tools/wait-fleet-unit.sh build-cleaners.service

@@ -1,0 +1,7 @@
+[Unit]
+Description=Build cleaners image
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /opt/data/fleet/build-cleaners/start.sh
+RemainAfterExit=yes
