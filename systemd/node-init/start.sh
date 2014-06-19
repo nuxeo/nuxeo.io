@@ -1,5 +1,7 @@
 #!/bin/sh
 
+sleep 60
+
 # gogeta
 echo "Starting gogeta"
 /usr/bin/systemctl start gogeta.service
