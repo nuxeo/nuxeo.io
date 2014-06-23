@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sleep 60
+sleep 180
 
 # gogeta
 echo "Starting gogeta"
