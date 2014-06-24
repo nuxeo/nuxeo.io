@@ -1,0 +1,6 @@
+%awsSecretAccessKeys = (
+    nuxeo => {
+        id => 'awsid',
+        key => 'awssecret',
+    },
+);
