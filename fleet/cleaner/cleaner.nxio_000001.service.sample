@@ -3,5 +3,5 @@ Description=Cleaner nxio_000001 - sample
 
 [Service]
 Environment='FLEET_UNIT_NAME=cleaner.nxio_000001.service' 'SERVICE_ID=nxio_000001'
-ExecStart=/home/core/cleaner/start.sh SERVICE1 SERVICE2 [...]
-ExecStop=/home/core/cleaner/stop.sh
+ExecStart=/opt/data/fleet/cleaner/start.sh SERVICE1 SERVICE2 [...]
+ExecStop=/opt/data/fleet/cleaner/stop.sh
