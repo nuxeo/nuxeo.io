@@ -24,7 +24,7 @@ RUN chmod +x /usr/bin/s3curl.pl
 ADD start.sh /root/start.sh
 
 # Add settings
-ADD .s3curl /usr/bin/.s3curl
+ADD s3curl /usr/bin/.s3curl
 
 # Start S3 Cleaner
 ENTRYPOINT ["/bin/bash", "-c", "/root/start.sh"]
