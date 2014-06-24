@@ -1,4 +1,4 @@
-#/bin/sh -
+#!/bin/sh -
 
 # Settings
 sed -i 's/awsid/$S3_AWSID/g' /usr/bin/.s3curl

@@ -1,4 +1,4 @@
-# S3 cleaner Base image is a ubuntu precise image
+# AWS cli Executor image
 #
 # VERSION               0.0.1
 
@@ -13,12 +13,6 @@ RUN apt-get upgrade -y
 
 # Install dependencies
 RUN apt-get install -y awscli
+ADD awscli.sh /bin/awscli.sh
 
-# Add script
-ADD start.sh /root/start.sh
-
-# Add settings
-ADD s3curl /usr/bin/.s3curl
-
-# Start S3 Cleaner
-ENTRYPOINT ["/bin/bash", "-c", "/root/start.sh"]
+ENTRYPOINT ["awscli.sh"]

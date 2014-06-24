@@ -1,4 +1,4 @@
-#/bin/sh -
+#!/bin/sh -
 
 # Delete holded backend activity
 echo "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '${PG_DB_NAME}';" | psql -h ${DB_PORT_1337_TCP_ADDR} -p ${DB_PORT_1337_TCP_PORT} -U postgres
