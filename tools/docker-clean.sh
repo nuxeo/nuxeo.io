@@ -12,6 +12,7 @@ fi
 docker ps -a|grep Exit|awk '{print $1}'|xargs docker rm
 
 # Clean orphan images
-docker images|grep none|awk '{print $3}'|xargs docker rmi
+# XXX Should be handle in a different way still we understand better the docker regsitry.
+# docker images|grep none|awk '{print $3}'|xargs docker rmi
 
 exit 0
