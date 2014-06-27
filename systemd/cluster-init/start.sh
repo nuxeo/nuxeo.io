@@ -1,11 +1,11 @@
 #!/bin/sh
 
 # fleet units
-INITIALIZED=`/usr/bin/etcdctl get /arken.io/initialized`
+INITIALIZED=`/usr/bin/etcdctl get /_arken.io/initialized`
 if [ $? -eq 0 ]; then
   exit 0
 fi
-/usr/bin/etcdctl set /arken.io/initialized true
+/usr/bin/etcdctl set /_arken.io/initialized true
 
 fleetctl start /opt/data/fleet/passivator/passivator.service
 
