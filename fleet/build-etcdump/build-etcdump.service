@@ -1,0 +1,10 @@
+[Unit]
+Description=Build etcdump image
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /opt/data/fleet/build-etcdump/start.sh
+RemainAfterExit=yes
+
+[X-Fleet]
+X-ConditionMachineOf=build-cleaners.service

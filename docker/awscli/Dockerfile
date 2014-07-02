@@ -13,6 +13,7 @@ RUN apt-get upgrade -y
 
 # Install dependencies
 RUN apt-get install -y awscli
+ADD write-awscli-conf.sh /bin/write-awscli-conf.sh
 ADD awscli.sh /bin/awscli.sh
 
 ENTRYPOINT ["awscli.sh"]

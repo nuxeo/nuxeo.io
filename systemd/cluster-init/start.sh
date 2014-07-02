@@ -33,3 +33,9 @@ fleetctl start /opt/data/fleet/build-io-container/build-io-container.service
 fleetctl start /opt/data/fleet/manager/manager.service
 /opt/data/tools/wait-fleet-unit.sh manager.service
 /opt/data/tools/wait-fleet-unit.sh build-cleaners.service
+
+fleetctl start /opt/data/fleet/build-etcdump/build-etcdump.service
+/opt/data/tools/wait-fleet-unit.sh build-etcdump.service
+
+fleetctl start /opt/data/fleet/etcdump/etcdump.service
+/opt/data/tools/wait-fleet-unit.sh etcdump.service
