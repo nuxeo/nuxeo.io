@@ -8,6 +8,7 @@ REGISTRY=`etcdctl get /services/docker-registry/1/location | sed -e 's/{"host":"
 
 /opt/data/tools/docker-clean.sh ${NAME} &> /dev/null
 
+docker pull $REGISTRY/nuxeo/etcdump
 /usr/bin/docker run --rm -P -t --name ${NAME} \
   -e S3_BUCKET="${S3_BUCKET}" -e AWS_ACCESS_ID="${AWS_ACCESS_ID}" -e AWS_ACCESS_SECRET="${AWS_ACCESS_SECRET}" \
   $REGISTRY/nuxeo/etcdump
