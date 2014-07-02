@@ -3,7 +3,6 @@
 AWS_ACCESS_ID=`/usr/bin/etcdctl get /_arken.io/config/aws/id`
 AWS_ACCESS_SECRET=`/usr/bin/etcdctl get /_arken.io/config/aws/secret`
 
-
 BUCKET=`/usr/bin/etcdctl get /_arken.io/config/s3/bucket`
 if [ ! $? -eq 0 ]; then
   PREFIX=`etcdctl get /_arken.io/key`
