@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PREFIX=`etcdctl get /services/manager/config/defaultDnsSuffix`
+PREFIX=`etcdctl get /_arken.io/key`
 USERNAME=${PREFIX}-${ENV_TECH_ID}
 
 # Creating S3 user/bucket if needed
