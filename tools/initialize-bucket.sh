@@ -24,4 +24,6 @@ if [ ! $? -eq 0 ]; then
   etcdctl set /services/${ENV_TECH_ID}/config/s3/username ${USERNAME}
   etcdctl set /services/${ENV_TECH_ID}/config/s3/awsid `echo $KEYS_RES | awk '{print $2}'`
   etcdctl set /services/${ENV_TECH_ID}/config/s3/awssecret `echo $KEYS_RES | awk '{print $4}'`
+
+  sleep 10
 fi
