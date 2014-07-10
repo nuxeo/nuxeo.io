@@ -4,10 +4,6 @@
   "dump": {
     "keys": [
       {
-        "key": "/_arken.io",
-        "recursive": true
-      },
-      {
         "key": "/_coreos.com/fleet/unit",
         "recursive": true
       },
@@ -20,10 +16,6 @@
         "key": "/_coreos.com/fleet/job/",
         "recursive": true,
         "pattern":".*target-state$"
-      },
-      {
-        "key": "/",
-        "recursive": true
       }
     ]
   }

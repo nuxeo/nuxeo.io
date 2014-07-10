@@ -19,6 +19,7 @@ RUN apt-get upgrade -y
 RUN apt-get install -y git nodejs
 RUN npm install -g arkenio/etcdump
 ADD etcdump.sh /bin/etcdump.sh
-ADD config.json /root/config.json
+ADD config-arken.json /root/config-arken.json
+ADD config-fleet.json /root/config-fleet.json
 
 ENTRYPOINT ["etcdump.sh"]
