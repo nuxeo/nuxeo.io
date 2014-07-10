@@ -38,4 +38,3 @@ fleetctl start /opt/data/fleet/build-etcdump/build-etcdump.service
 /opt/data/tools/wait-fleet-unit.sh build-etcdump.service
 
 fleetctl start /opt/data/fleet/etcdump/etcdump.service
-/opt/data/tools/wait-fleet-unit.sh etcdump.service
