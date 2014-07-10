@@ -1,6 +1,8 @@
 #!/bin/sh -
 
-REGISTRY=`etcdctl get /services/docker-registry/1/location | sed -e 's/{"host":"\([^"]*\)","port":\([^"]*\)}/\1\:\2/'`
+# builds images
+/usr/bin/docker build -t nuxeo/etcdump /opt/data/docker/etcdump/
+/usr/bin/docker build -t nuxeo/etcdrestore /opt/data/docker/etcdrestore/
 
 AWS_ACCESS_ID=`/usr/bin/etcdctl get /_arken.io/config/aws/id`
 AWS_ACCESS_SECRET=`/usr/bin/etcdctl get /_arken.io/config/aws/secret`
@@ -10,4 +12,4 @@ docker run --rm \
   -e S3_BUCKET="${S3_BUCKET}" \
   -e AWS_ACCESS_ID=$AWS_ACCESS_ID \
   -e AWS_ACCESS_SECRET=$AWS_ACCESS_SECRET  \
-  $REGISTRY/nuxeo/etcdrestore $@
+  nuxeo/etcdrestore $@
