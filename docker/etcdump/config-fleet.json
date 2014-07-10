@@ -10,12 +10,12 @@
       {
         "key": "/_coreos.com/fleet/job/",
         "recursive": true,
-        "pattern":".*object$"
+        "pattern":"nxio.*object$"
       },
       {
         "key": "/_coreos.com/fleet/job/",
         "recursive": true,
-        "pattern":".*target-state$"
+        "pattern":"nxio.*target-state$"
       }
     ]
   }
