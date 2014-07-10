@@ -14,9 +14,9 @@ S3_AWSID=`/usr/bin/etcdctl get /services/manager/config/s3/awsid`
 S3_AWSSECRET=`/usr/bin/etcdctl get /services/manager/config/s3/awssecret`
 S3_REGION=`/usr/bin/etcdctl get /_arken.io/config/s3/region`
 DOMAIN=`/usr/bin/etcdctl get /services/manager/config/domain`
-DEFAULT_DNS_SUFFIX=`/usr/bin/etcdctl get /services/manager/config/defaultDnsSuffix`
+DEFAULT_DOMAIN_SUFFIX=`/usr/bin/etcdctl get /services/manager/config/defaultDomainSuffix`
 if [ ! $? -eq 0 ]; then
-  DEFAULT_DNS_SUFFIX=""
+  DEFAULT_DOMAIN_SUFFIX=""
 fi
 
 CONNECT_URL=`/usr/bin/etcdctl get /config/connect/url`
@@ -42,7 +42,7 @@ fi
   -e PGPASSWORD="nuxeoiopostgres" \
   -e S3_BUCKET="${S3_BUCKET}" -e S3_AWSID="${S3_AWSID}" -e S3_AWSSECRET="${S3_AWSSECRET}" -e S3_REGION="${S3_REGION}" \
   -e DOMAIN="${DOMAIN}" \
-  -e DEFAULT_DNS_SUFFIX="${DEFAULT_DNS_SUFFIX}" \
+  -e DEFAULT_DOMAIN_SUFFIX="${DEFAULT_DOMAIN_SUFFIX}" \
   -e CONNECT_URL="${CONNECT_URL}" -e SSO_URL="${SSO_URL}" \
   -e OAUTH_CONSUMER_KEY="${OAUTH_CONSUMER_KEY}" -e OAUTH_CONSUMER_SECRET="${OAUTH_CONSUMER_SECRET}" \
   nuxeo/manager

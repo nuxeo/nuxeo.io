@@ -42,9 +42,9 @@ echo "nuxeo.url=http://$DOMAIN/nuxeo" >> $NUXEO_CONF
 # sso.url
 echo "sso.url=$SSO_URL" >> $NUXEO_CONF
 
-# org.nuxeo.io.defaultDnsSuffix
-if [ ! -z "$DEFAULT_DNS_SUFFIX" ]; then
-  echo "org.nuxeo.io.defaultDnsSuffix=$DEFAULT_DNS_SUFFIX" >> $NUXEO_CONF
+# org.nuxeo.io.defaultDomainSuffix
+if [ ! -z "$DEFAULT_DOMAIN_SUFFIX" ]; then
+  echo "org.nuxeo.io.defaultDomainSuffix=$DEFAULT_DOMAIN_SUFFIX" >> $NUXEO_CONF
 fi
 
 # io.oauth.consumer.key/secret
