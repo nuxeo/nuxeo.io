@@ -1,6 +1,7 @@
 #!/bin/sh -
 
 # builds images
+/usr/bin/docker build -t nuxeo/awscli /opt/data/docker/awscli/
 /usr/bin/docker build -t nuxeo/etcdump /opt/data/docker/etcdump/
 /usr/bin/docker build -t nuxeo/etcdrestore /opt/data/docker/etcdrestore/
 
