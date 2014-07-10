@@ -2,7 +2,7 @@
 
 /bin/write-awscli-conf.sh
 
-NOW=`date +"%m_%d_%Y-%H_%M"`
+NOW=`date +"%Y_%m_%d-%H_%M"`
 
 # dump etcd
 echo "Dumping arken etcd"
