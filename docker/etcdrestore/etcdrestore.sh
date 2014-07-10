@@ -16,7 +16,7 @@ fi
 
 # restore etcd
 echo "Restoring etcd"
-etcdump --config /root/config.json --file $1 restore
+etcdump --config /root/config.json --file `pwd`/$1 restore
 if [ ! $? -eq 0 ]; then
   echo "Error while restoring etcd DB."
 else
