@@ -1,11 +1,5 @@
 #!/bin/sh
 
-POSTGRES_AMB=postgres-amb
-S3_AMB=s3-amb
-
-/opt/data/tools/wait-container.sh $POSTGRES_AMB
-/opt/data/tools/wait-container.sh $S3_AMB
-
 PG_PWD=`openssl rand -hex 15`
 REGISTRY=`etcdctl get /services/docker-registry/1/location | sed -e 's/{"host":"\([^"]*\)","port":\([^"]*\)}/\1\:\2/'`
 DB_PORT_1337_TCP_ADDR=`etcdctl get /services/postgres-service/1/location | sed -e 's/{"host":"\([^"]*\)","port":\([^"]*\)}/\1/'`
