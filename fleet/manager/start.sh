@@ -8,6 +8,8 @@ S3_AMB=s3-amb
 
 PG_PWD=`openssl rand -hex 15`
 REGISTRY=`etcdctl get /services/docker-registry/1/location | sed -e 's/{"host":"\([^"]*\)","port":\([^"]*\)}/\1\:\2/'`
+DB_PORT_1337_TCP_ADDR=`etcdctl get /services/postgres-service/1/location | sed -e 's/{"host":"\([^"]*\)","port":\([^"]*\)}/\1/'`
+DB_PORT_1337_TCP_PORT=`etcdctl get /services/postgres-service/1/location | sed -e 's/{"host":"\([^"]*\)","port":\([^"]*\)}/\2/'`
 SSO_URL=`/usr/bin/etcdctl get /_arken.io/config/sso/location`
 S3_BUCKET=`/usr/bin/etcdctl get /services/manager/config/s3/bucket`
 S3_AWSID=`/usr/bin/etcdctl get /services/manager/config/s3/awsid`
@@ -36,8 +38,7 @@ fi
 /opt/data/tools/docker-clean.sh ${MANAGER_NAME} &> /dev/null
 
 /usr/bin/docker run --rm -P -t --name ${MANAGER_NAME} \
-  --link ${POSTGRES_AMB}:db \
-  --link ${S3_AMB}:s3 \
+  -e DB_PORT_1337_TCP_ADDR="${DB_PORT_1337_TCP_ADDR}" -e DB_PORT_1337_TCP_PORT="${DB_PORT_1337_TCP_PORT}" \
   -e PG_DB_NAME="${MANAGER_NAME}" -e PG_ROLE_NAME="${MANAGER_NAME}" -e PG_PWD="${PG_PWD}" \
   -e PGPASSWORD="nuxeoiopostgres" \
   -e S3_BUCKET="${S3_BUCKET}" -e S3_AWSID="${S3_AWSID}" -e S3_AWSSECRET="${S3_AWSSECRET}" -e S3_REGION="${S3_REGION}" \
