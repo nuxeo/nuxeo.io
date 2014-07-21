@@ -21,6 +21,11 @@ if [ ! $? -eq 0 ]; then
   PACKAGES="nuxeo-dm nuxeo-dam nuxeo-drive nuxeo-template-rendering nuxeo-csv nuxeo-web-mobile-dm"
 fi
 
+HTTP_PROTOCOL=`/usr/bin/etcdctl get /_arken.io/config/http/protocol`
+if [ ! $? -eq 0 ]; then
+  HTTP_PROTOCOL="http"
+fi
+
 # Ensure to rm not correctly stopped container
 /opt/data/tools/docker-clean.sh ${ENV_TECH_ID} &> /dev/null
 
@@ -33,7 +38,7 @@ REGISTRY=`etcdctl get /services/docker-registry/1/location | sed -e 's/{"host":"
   -e PGPASSWORD="nuxeoiopostgres" \
   -e S3_BUCKET="${S3_BUCKET}" -e S3_AWSID="${S3_AWSID}" -e S3_AWSSECRET="${S3_AWSSECRET}" -e S3_REGION="${S3_REGION}" \
   -e ENV_TECH_ID="${ENV_TECH_ID}" \
-  -e DOMAIN="${DOMAIN}" \
+  -e HTTP_PROTOCOL="${HTTP_PROTOCOL}" -e DOMAIN="${DOMAIN}" \
   -e CLID="${CLID}" \
   -e CONNECT_URL="${CONNECT_URL}" \
   -e PACKAGES="${PACKAGES}" \

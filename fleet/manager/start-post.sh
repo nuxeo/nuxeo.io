@@ -7,5 +7,3 @@ PORT=`docker port $MANAGER_NAME 8080 | awk -F : '{print $2}'`
 DOMAIN=`/usr/bin/etcdctl get /services/manager/config/domain`
 /usr/bin/etcdctl set /domains/$DOMAIN/type service
 /usr/bin/etcdctl set /domains/$DOMAIN/value manager
-
-

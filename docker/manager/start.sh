@@ -38,7 +38,7 @@ fi
 echo "nuxeo.s3storage.region=$S3_REGION" >> $NUXEO_CONF
 
 # nuxeo.url
-echo "nuxeo.url=http://$DOMAIN/nuxeo" >> $NUXEO_CONF
+echo "nuxeo.url=$HTTP_PROTOCOL://$DOMAIN/nuxeo" >> $NUXEO_CONF
 # sso.url
 echo "sso.url=$SSO_URL" >> $NUXEO_CONF
 
