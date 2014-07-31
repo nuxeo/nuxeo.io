@@ -45,6 +45,9 @@ if [ ! -z "$CONNECT_URL" ]; then
   echo "org.nuxeo.connect.url=$CONNECT_URL" >> $NUXEO_CONF
 fi
 
+
+echo "org.nuxeo.dev=true" >> $NUXEO_CONF
+
 # instance.clid
 printf "%b\n" "$CLID" >> /var/lib/nuxeo/data/instance.clid
 
