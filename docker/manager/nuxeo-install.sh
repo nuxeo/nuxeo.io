@@ -1,8 +1,8 @@
 #!/bin/sh -x
 
 # Nuxeo setup
-wget -q "http://www.nuxeo.org/static/latest-release/nuxeo,tomcat.zip,5.9" -O /tmp/nuxeo-distribution-tomcat.zip
-wget -q "http://www.nuxeo.org/static/latest-io-release/marketplace,nuxeo,io,zip,0.1" -O /tmp/marketplace-nuxeo.io.zip
+wget -q "http://www.nuxeo.org/static/latest-snapshot/nuxeo,tomcat.zip,5.9" -O /tmp/nuxeo-distribution-tomcat.zip
+wget -q "http://www.nuxeo.org/static/latest-io-snapshot/marketplace,nuxeo,io,zip,0.3" -O /tmp/marketplace-nuxeo.io.zip
 
 mkdir -p /tmp/nuxeo-distribution
 unzip -q -d /tmp/nuxeo-distribution /tmp/nuxeo-distribution-tomcat.zip
