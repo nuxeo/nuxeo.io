@@ -1,7 +1,7 @@
 #!/bin/sh -x
 
 # Nuxeo setup
-wget -q "http://www.nuxeo.org/static/latest-snapshot/nuxeo,tomcat.zip,5.9" -O /tmp/nuxeo-distribution-tomcat.zip
+wget -q "http://www.nuxeo.org/static/latest-release/nuxeo,tomcat.zip,5.9.4" -O /tmp/nuxeo-distribution-tomcat.zip
 wget -q "http://www.nuxeo.org/static/latest-io-snapshot/marketplace,nuxeo,io,zip,0.3" -O /tmp/marketplace-nuxeo.io.zip
 
 mkdir -p /tmp/nuxeo-distribution
@@ -11,6 +11,10 @@ mkdir -p $NUXEO_HOME
 mv /tmp/nuxeo-distribution/$distdir/* $NUXEO_HOME
 rm -rf /tmp/nuxeo-distribution*
 chmod +x $NUXEO_HOME/bin/nuxeoctl
+
+# Patch nuxeo-platform-oauth with a newer version. TO BE REMOVED WHEN IN 5.9.5
+OAUTH_JAR=$(/bin/ls $NUXEO_HOME/nxserver/bundles/nuxeo-platform-oauth* | head -n 1)
+wget -q "https://maven-eu.nuxeo.org/nexus/service/local/repositories/public-snapshots/content/org/nuxeo/ecm/platform/nuxeo-platform-oauth/5.9.5-SNAPSHOT/nuxeo-platform-oauth-5.9.5-20140806.021345-36.jar" -O $OAUTH_JAR
 
 mkdir -p /var/lib/nuxeo
 mkdir -p /var/log/nuxeo
