@@ -3,7 +3,7 @@ Description=Services Activator/Passivator
 
 [Service]
 TimeoutStartSec=0
-Environment='PASSIVATOR_NAME=passivator'
+Environment='PASSIVATOR_NAME=passivator' 'PASSIVATOR_VERSION=0.1.0'
 ExecStart=/bin/sh /opt/data/fleet/passivator/start.sh
 ExecStop=/bin/sh /opt/data/fleet/passivator/stop.sh
 Restart=always
