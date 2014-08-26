@@ -17,7 +17,7 @@ RUN apt-get upgrade -y
 
 # Install dependencies
 RUN apt-get install -y git nodejs
-RUN npm install -g git://github.com/arkenio/etcdum.git#v0.1.0
+RUN npm install -g git://github.com/arkenio/etcdump.git#v0.1.0
 ADD etcdump.sh /bin/etcdump.sh
 ADD config-arken.json /root/config-arken.json
 ADD config-fleet.json /root/config-fleet.json
