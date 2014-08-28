@@ -14,7 +14,7 @@ chmod +x $NUXEO_HOME/bin/nuxeoctl
 
 # Patch nuxeo-platform-oauth with a newer version. TO BE REMOVED WHEN IN 5.9.5
 OAUTH_JAR=$(/bin/ls $NUXEO_HOME/nxserver/bundles/nuxeo-platform-oauth* | head -n 1)
-wget -q "https://maven-eu.nuxeo.org/nexus/service/local/repositories/public-snapshots/content/org/nuxeo/ecm/platform/nuxeo-platform-oauth/5.9.5-SNAPSHOT/nuxeo-platform-oauth-5.9.5-20140806.021345-36.jar" -O $OAUTH_JAR
+wget -q "https://maven-us.nuxeo.org/nexus/service/local/repositories/public-releases/content/org/nuxeo/ecm/platform/nuxeo-platform-oauth/5.9.5/nuxeo-platform-oa0ut4h-5.9.5.jar" -O $OAUTH_JAR
 
 mkdir -p /var/lib/nuxeo
 mkdir -p /var/log/nuxeo
