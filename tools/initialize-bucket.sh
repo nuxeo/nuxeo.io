@@ -3,6 +3,12 @@
 PREFIX=`etcdctl get /_arken.io/key`
 USERNAME=${PREFIX}-${ENV_TECH_ID}
 
+/opt/data/tools/awscli &> /dev/null
+if [ ! $? -eq 2 ]; then
+  echo "AWSCLI is missing."
+  exit 1
+fi
+
 # Creating S3 user/bucket if needed
 /opt/data/tools/awscli iam get-user --user-name $USERNAME &> /dev/null
 if [ ! $? -eq 0 ]; then
