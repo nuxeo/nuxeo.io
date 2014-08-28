@@ -12,10 +12,6 @@ mv /tmp/nuxeo-distribution/$distdir/* $NUXEO_HOME
 rm -rf /tmp/nuxeo-distribution*
 chmod +x $NUXEO_HOME/bin/nuxeoctl
 
-# Patch nuxeo-platform-oauth with a newer version. TO BE REMOVED WHEN IN 5.9.5
-OAUTH_JAR=$(/bin/ls $NUXEO_HOME/nxserver/bundles/nuxeo-platform-oauth* | head -n 1)
-wget -q "https://maven-us.nuxeo.org/nexus/service/local/repositories/public-releases/content/org/nuxeo/ecm/platform/nuxeo-platform-oauth/5.9.5/nuxeo-platform-oa0ut4h-5.9.5.jar" -O $OAUTH_JAR
-
 mkdir -p /var/lib/nuxeo
 mkdir -p /var/log/nuxeo
 mkdir -p /var/run/nuxeo
@@ -37,3 +33,7 @@ echo 'mp-init'
 su $NUXEO_USER -m -c "$NUXEOCTL mp-init"
 echo 'mp-install'
 su $NUXEO_USER -m -c "$NUXEOCTL mp-install --accept true /tmp/marketplace-nuxeo.io.zip"
+
+# Patch nuxeo-platform-oauth with a newer version. TO BE REMOVED WHEN IN 5.9.5
+OAUTH_JAR=$(/bin/ls $NUXEO_HOME/nxserver/bundles/nuxeo-platform-oauth* | head -n 1)
+wget -q "https://maven-us.nuxeo.org/nexus/service/local/repositories/public-releases/content/org/nuxeo/ecm/platform/nuxeo-platform-oauth/5.9.5/nuxeo-platform-oauth-5.9.5.jar" -O $OAUTH_JAR
