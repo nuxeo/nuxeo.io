@@ -3,7 +3,7 @@
 # Nuxeo setup
 wget -q "http://www.nuxeo.org/static/latest-release/nuxeo,tomcat.zip,5.9.5" -O /tmp/nuxeo-distribution-tomcat.zip
 MARKETPLACE_OUTPUT=/tmp/marketplace-nuxeo-io-manager.zip
-wget -q "http://www.nuxeo.org/static/latest-io-snapshot/marketplace,nuxeo,io,manager,zip,0.3" -O $MARKETPLACE_OUTPUT
+wget -q "http://www.nuxeo.org/static/latest-io-release/marketplace,nuxeo,io,manager,zip,0.3" -O $MARKETPLACE_OUTPUT
 
 mkdir -p /tmp/nuxeo-distribution
 unzip -q -d /tmp/nuxeo-distribution /tmp/nuxeo-distribution-tomcat.zip
