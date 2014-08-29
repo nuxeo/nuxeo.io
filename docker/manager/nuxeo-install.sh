@@ -2,7 +2,8 @@
 
 # Nuxeo setup
 wget -q "http://www.nuxeo.org/static/latest-release/nuxeo,tomcat.zip,5.9.5" -O /tmp/nuxeo-distribution-tomcat.zip
-wget -q "http://www.nuxeo.org/static/latest-io-snapshot/marketplace,nuxeo,io,zip,0.3" -O /tmp/marketplace-nuxeo.io.zip
+MARKETPLACE_OUTPUT=/tmp/marketplace-nuxeo-io-manager.zip
+wget -q "http://www.nuxeo.org/static/latest-io-snapshot/marketplace,nuxeo,io,manager,zip,0.3" -O $MARKETPLACE_OUTPUT
 
 mkdir -p /tmp/nuxeo-distribution
 unzip -q -d /tmp/nuxeo-distribution /tmp/nuxeo-distribution-tomcat.zip
@@ -19,7 +20,7 @@ mkdir -p /var/run/nuxeo
 chown -R $NUXEO_USER:$NUXEO_USER /var/lib/nuxeo
 chown -R $NUXEO_USER:$NUXEO_USER /var/log/nuxeo
 chown -R $NUXEO_USER:$NUXEO_USER /var/run/nuxeo
-chown -R $NUXEO_USER:$NUXEO_USER /tmp/marketplace-nuxeo.io.zip
+chown -R $NUXEO_USER:$NUXEO_USER $MARKETPLACE_OUTPUT
 
 cat << EOF >> $NUXEO_HOME/bin/nuxeo.conf
 nuxeo.log.dir=/var/log/nuxeo
@@ -32,4 +33,4 @@ EOF
 echo 'mp-init'
 su $NUXEO_USER -m -c "$NUXEOCTL mp-init"
 echo 'mp-install'
-su $NUXEO_USER -m -c "$NUXEOCTL mp-install --accept true /tmp/marketplace-nuxeo.io.zip"
+su $NUXEO_USER -m -c "$NUXEOCTL mp-install --accept true $MARKETPLACE_OUTPUT"
