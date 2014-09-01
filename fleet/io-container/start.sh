@@ -36,7 +36,7 @@ REGISTRY=`etcdctl get /services/docker-registry/1/location | sed -e 's/{"host":"
   -e DB_PORT_1337_TCP_ADDR="${DB_PORT_1337_TCP_ADDR}" -e DB_PORT_1337_TCP_PORT="${DB_PORT_1337_TCP_PORT}" \
   -e PG_DB_NAME="${ENV_TECH_ID}" -e PG_ROLE_NAME="${ENV_TECH_ID}" -e PG_PWD="${PG_PWD}" \
   -e PGPASSWORD="nuxeoiopostgres" \
-  -e S3_BUCKET="${S3_BUCKET}" -e S3_AWSID="${S3_AWSID}" -e S3_AWSSECRET="${S3_AWSSECRET}" -e S3_REGION="${S3_REGION}" \
+  -e S3_BUCKET="${S3_BUCKET}" -e S3_AWSID="${S3_AWSID}" -e S3_AWSSECRET="${S3_AWSSECRET}" -e S3_REGION="${S3_REGION}" -e S3_PREFIX="${ENV_TECH_ID}" \
   -e ENV_TECH_ID="${ENV_TECH_ID}" \
   -e HTTP_PROTOCOL="${HTTP_PROTOCOL}" -e DOMAIN="${DOMAIN}" \
   -e CLID="${CLID}" \
