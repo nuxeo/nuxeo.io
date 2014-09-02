@@ -16,7 +16,7 @@ EOF
 no_cache=
 
 OPTIND=1 # Reset is necessary if getopts was used previously in the script.  It is a good idea to make this local in a function.
-while getopts "hc" opt; do
+while getopts "hf" opt; do
     case "$opt" in
         h)
             show_help
