@@ -8,7 +8,7 @@ Build docker image named with the same name as the directory where it is. Also
 push it to the local registry.
 
     -h          display this help and exit.
-    -c          use --no-cache param while building image
+    -f          use --no-cache param while building image
 EOF
 }
 
@@ -22,7 +22,7 @@ while getopts "hc" opt; do
             show_help
             exit 0
             ;;
-        c)  no_cache="--no-cache"
+        f)  no_cache="--no-cache"
             ;;
         '?')
             show_help >&2

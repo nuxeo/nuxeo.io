@@ -1,3 +1,3 @@
 #!/bin/sh
 
-exec /opt/data/tools/build-image.sh -c iocontainer
+exec /opt/data/tools/build-image.sh -f iocontainer
