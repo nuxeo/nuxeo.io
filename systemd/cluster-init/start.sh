@@ -9,11 +9,11 @@ fi
 
 fleetctl start /opt/data/fleet/passivator/passivator.service
 
-fleetctl start /opt/data/fleet/docker-registry/docker-registry.service
-/opt/data/tools/wait-fleet-unit.sh docker-registry.service
+#fleetctl start /opt/data/fleet/docker-registry/docker-registry.service
+#/opt/data/tools/wait-fleet-unit.sh docker-registry.service
 
 # start fill-registry script
-/opt/data/tools/fill-registry.sh
+#/opt/data/tools/fill-registry.sh
 
 fleetctl start /opt/data/fleet/manager/manager.service
 

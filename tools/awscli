@@ -1,9 +1,7 @@
 #!/bin/sh -
 
-REGISTRY=`etcdctl get /services/docker-registry/1/location | sed -e 's/{"host":"\([^"]*\)","port":\([^"]*\)}/\1\:\2/'`
 
 AWS_ACCESS_ID=`/usr/bin/etcdctl get /_arken.io/config/aws/id`
 AWS_ACCESS_SECRET=`/usr/bin/etcdctl get /_arken.io/config/aws/secret`
 
-docker pull $REGISTRY/nuxeo/awscli &> /dev/null
-docker run -e AWS_ACCESS_ID=$AWS_ACCESS_ID -e AWS_ACCESS_SECRET=$AWS_ACCESS_SECRET --rm $REGISTRY/nuxeo/awscli $@
+docker run -e AWS_ACCESS_ID=$AWS_ACCESS_ID -e AWS_ACCESS_SECRET=$AWS_ACCESS_SECRET --rm quay.io/nuxeoio/awscli $@

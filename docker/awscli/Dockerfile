@@ -2,14 +2,8 @@
 #
 # VERSION               0.0.1
 
-FROM       ubuntu:trusty
+FROM       quay.io/nuxeoio/iobase
 MAINTAINER Nuxeo <contact@nuxeo.com>
-
-# Update all packages
-RUN apt-get update
-
-# Upgrade Ubuntu
-RUN apt-get upgrade -y
 
 # Install dependencies
 RUN apt-get install -y awscli

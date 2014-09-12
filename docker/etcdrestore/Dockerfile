@@ -2,7 +2,7 @@
 #
 # VERSION               0.0.1
 
-FROM       nuxeo/etcdump
+FROM       quay.io/nuxeoio/etcdump
 MAINTAINER Nuxeo <contact@nuxeo.com>
 
 ADD etcdrestore.sh /bin/etcdrestore.sh

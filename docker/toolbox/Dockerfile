@@ -2,7 +2,7 @@
 #
 # VERSION               0.0.1
 
-FROM       ubuntu:precise
+FROM       ubuntu:trusty
 MAINTAINER Nuxeo <contact@nuxeo.com>
 
 ## Update system

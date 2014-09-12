@@ -4,7 +4,6 @@ Description=PostgreSQL
 [Service]
 TimeoutStartSec=0
 Environment='POSTGRES_NAME=postgres-service'
-ExecStartPre=/bin/sh /opt/data/fleet/postgres-service/start-pre.sh
 ExecStart=/bin/sh /opt/data/fleet/postgres-service/start.sh
 ExecStartPost=/bin/sh /opt/data/fleet/postgres-service/start-post.sh
 ExecStop=/bin/sh /opt/data/fleet/postgres-service/stop.sh

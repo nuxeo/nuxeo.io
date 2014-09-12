@@ -4,7 +4,6 @@ Description=vblob service
 [Service]
 TimeoutStartSec=0
 Environment='VBLOB_NAME=vblob-service' 'S3_SERVICE=s3' 'BUCKET_NAME=nuxeobucket'
-ExecStartPre=/bin/sh /opt/data/fleet/vblob-service/start-pre.sh
 ExecStart=/bin/sh /opt/data/fleet/vblob-service/start.sh
 ExecStartPost=/bin/sh /opt/data/fleet/vblob-service/start-post.sh
 ExecStop=/bin/sh /opt/data/fleet/vblob-service/stop.sh
