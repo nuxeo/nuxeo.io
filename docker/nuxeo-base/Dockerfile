@@ -40,6 +40,8 @@ RUN echo 'root:nuxeoiocontainer' | chpasswd
 
 WORKDIR /tmp
 ENV BUILD_YASM true
+
+# Build ffmpeg
 RUN git clone https://github.com/nuxeo/ffmpeg-nuxeo.git && \
     cd ffmpeg-nuxeo && \
     ./build-all.sh true && \
