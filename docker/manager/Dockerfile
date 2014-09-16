@@ -24,7 +24,7 @@ RUN cd /usr/local/go/src && ./make.bash --no-clean 2>&1
 
 WORKDIR /tmp
 RUN git clone https://github.com/coreos/fleet.git
-RUN cd fleet && ./build && cp ./bin/fleetctl /usr/bin && cd .. && rm -rf /tmp/fleet
+RUN cd fleet && git checkout v0.6.2 && ./build && cp ./bin/fleetctl /usr/bin && cd .. && rm -rf /tmp/fleet
 ### End of fleetctl build
 
 

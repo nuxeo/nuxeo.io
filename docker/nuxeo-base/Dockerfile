@@ -46,7 +46,7 @@ RUN git clone https://github.com/nuxeo/ffmpeg-nuxeo.git && \
     cd ffmpeg-nuxeo && \
     ./build-all.sh true && \
     cd .. && \
-    rm -rf ffmpeg-nuxeo
+    rm -Rf ffmpeg-nuxeo
 
 # Expose default Tomcat and SSH ports
 EXPOSE 8080 22
