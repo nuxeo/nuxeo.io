@@ -11,5 +11,3 @@ ExecStop=/opt/data/fleet/manager/stop.sh
 Restart=always
 RestartSec=10s
 
-[X-Fleet]
-X-ConditionMachineOf=build-io-base.service
