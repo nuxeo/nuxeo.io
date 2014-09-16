@@ -29,8 +29,6 @@ fi
 # Ensure to rm not correctly stopped container
 /opt/data/tools/docker-clean.sh ${ENV_TECH_ID} &> /dev/null
 
-REGISTRY=`etcdctl get /services/docker-registry/1/location | sed -e 's/{"host":"\([^"]*\)","port":\([^"]*\)}/\1\:\2/'`
-/usr/bin/docker pull ${REGISTRY}/nuxeo/iocontainer
 
 /usr/bin/docker run --rm -P -t --name ${ENV_TECH_ID} \
   -e DB_PORT_1337_TCP_ADDR="${DB_PORT_1337_TCP_ADDR}" -e DB_PORT_1337_TCP_PORT="${DB_PORT_1337_TCP_PORT}" \
@@ -42,4 +40,4 @@ REGISTRY=`etcdctl get /services/docker-registry/1/location | sed -e 's/{"host":"
   -e CLID="${CLID}" \
   -e CONNECT_URL="${CONNECT_URL}" \
   -e PACKAGES="${PACKAGES}" \
-  ${REGISTRY}/nuxeo/iocontainer
+  quay.io/nuxeoio/iocontainer
