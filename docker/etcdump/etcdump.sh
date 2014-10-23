@@ -4,16 +4,17 @@
 
 NOW=`date +"%Y_%m_%d-%H_%M"`
 
+
 # dump etcd
 echo "Dumping arken etcd"
-etcdump --config /root/config-arken.json --file etcd_dump_arken_$NOW.json dump
+nodejs  /usr/local/bin/etcdump --config /root/config-arken.json --file etcd_dump_arken_$NOW.json dump
 if [ ! $? -eq 0 ]; then
   echo "Error while dumping arken etcd."
 else
   echo "Successfuly dumped arken etcd DB."
 fi
 echo "Dumping fleet etcd"
-etcdump --config /root/config-fleet.json --file etcd_dump_fleet_$NOW.json dump
+nodejs  /usr/local/bin/etcdump --config /root/config-fleet.json --file etcd_dump_fleet_$NOW.json dump
 if [ ! $? -eq 0 ]; then
   echo "Error while dumping fleet etcd."
 else
