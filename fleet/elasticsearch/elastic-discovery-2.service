@@ -1,0 +1,23 @@
+[Unit]
+Description=ElasticSearch discovery service
+BindsTo=elasticsearch-2.service
+
+[Service]
+EnvironmentFile=/etc/environment
+
+ExecStart=/bin/bash -c '\
+  while true; do \
+    curl -f ${COREOS_PRIVATE_IPV4}:9200; \
+    if [ "$?" = "0" ]; then \
+      etcdctl set /services/elasticsearch/2/transport \'{"host":"${COREOS_PRIVATE_IPV4}","port": 9300}\' --ttl 60; \
+      etcdctl set /services/elasticsearch/2/location \'{"host":"${COREOS_PRIVATE_IPV4}","port": 9200}\' --ttl 60; \
+    else \
+      etcdctl rm --recursive /services/elasticsearch/2; \
+    fi; \
+    sleep 45; \
+  done'
+
+ExecStop=/usr/bin/etcdctl rm --recursive /services/elasticsearch/2
+
+[X-Fleet]
+X-ConditionMachineOf=elasticsearch-2.service
