@@ -35,9 +35,6 @@ RUN sudo apt-get install -y \
     gimp \
     ghostscript
 
-RUN mkdir -p /var/run/sshd
-RUN echo 'root:nuxeoiocontainer' | chpasswd
-
 WORKDIR /tmp
 ENV BUILD_YASM true
 
