@@ -23,7 +23,7 @@ fi
 
 PACKAGES=`/usr/bin/etcdctl get /services/${ENV_TECH_ID}/1/config/packages`
 if [ ! $? -eq 0 ]; then
-  PACKAGES="nuxeo-dm nuxeo-dam nuxeo-drive nuxeo-template-rendering nuxeo-csv nuxeo-web-mobile-dm"
+  PACKAGES="nuxeo-web-mobile nuxeo-drive nuxeo-diff nuxeo-spreadsheet nuxeo-dam nuxeo-template-rendering"
 fi
 
 HTTP_PROTOCOL=`/usr/bin/etcdctl get /_arken.io/config/http/protocol`
