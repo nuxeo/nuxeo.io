@@ -34,7 +34,11 @@ fi
 # Ensure to rm not correctly stopped container
 /opt/data/tools/docker-clean.sh ${ENV_TECH_ID} &> /dev/null
 
-CONTAINER_VERSION=5.9.5
+# XXX To be removed as soon as we handle correctly target platform
+CONTAINER_VERSION=`/usr/bin/etcdctl get /services/${ENV_TECH_ID}/config/platform`
+if [ ! $? -eq 0 ]; then
+  CONTAINER_VERSION=6.0
+fi
 
 /usr/bin/docker run --rm -P -t --name ${ENV_TECH_ID} \
   -e DB_PORT_1337_TCP_ADDR="${DB_PORT_1337_TCP_ADDR}" -e DB_PORT_1337_TCP_PORT="${DB_PORT_1337_TCP_PORT}" \
