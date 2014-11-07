@@ -26,7 +26,7 @@ ExecStart=/bin/bash -c '\
     --publish 9200:9200 \
     --publish 9300:9300 \
     --volume /data/elasticsearch:/data \
-    dockerfile/elasticsearch \
+    quay.io/nuxeoio/elasticsearch:1.1.2 \
     /elasticsearch/bin/elasticsearch \
     --node.name=%p \
     --cluster.name=nuxeo \
