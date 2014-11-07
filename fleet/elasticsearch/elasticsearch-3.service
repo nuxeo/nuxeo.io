@@ -38,4 +38,4 @@ ExecStop=/usr/bin/docker stop %p
 ExecStop=/usr/bin/docker rm %p
 
 [X-Fleet]
-X-Conflicts=elastissearch*.service
+X-Conflicts=elasticsearch*.service
