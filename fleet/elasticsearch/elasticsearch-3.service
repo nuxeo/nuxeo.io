@@ -15,7 +15,8 @@ ExecStart=/bin/bash -c '\
   if [ "$?" = "0" ]; then \
       UNICAST_HOSTS=$(etcdctl ls --recursive /services/elasticsearch \
              | grep transport  \
-             | while read i; do etcdctl get $i | sed -e \'s/{"host":"\([^"]*\)","port":\([^"]*\)}/\1\:\2/\';done \
+             | while read i; do etcdctl get $i \
+             | sed -e 's/{"host":"\([^"]*\)","port":\([^"]*\)}/\1\:\2/'; done \
              | paste -s -d","); \
   else \
       UNICAST_HOSTS=""; \
