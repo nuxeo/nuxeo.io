@@ -13,7 +13,8 @@ CLID=`/usr/bin/etcdctl get /services/${ENV_TECH_ID}/1/config/instance.clid`
 
 ES_HOSTS=$(/usr/bin/etcdctl ls --recursive /services/elasticsearch \
              | grep transport  \
-             | while read i; do etcdctl get $i | sed -e \'s/{"host":"\([^"]*\)","port":\([^"]*\)}/\1\:\2/\';done \
+             | while read i; do etcdctl get $i \
+             | sed -e 's/{"host":"\([^"]*\)","port":\([^"]*\)}/\1\:\2/';done \
              | paste -s -d",")
 
 CONNECT_URL=`/usr/bin/etcdctl get /config/connect/url`
@@ -50,5 +51,5 @@ fi
   -e CLID="${CLID}" \
   -e CONNECT_URL="${CONNECT_URL}" \
   -e PACKAGES="${PACKAGES}" \
-  -e ES_HOST="${ES_HOSTS}" \
+  -e ES_HOSTS="${ES_HOSTS}" \
   quay.io/nuxeoio/iocontainer:${CONTAINER_VERSION}
