@@ -6,9 +6,10 @@ Requires=docker.service
 [Service]
 TimeoutSec=180
 EnvironmentFile=/etc/environment
+Environment='ES_VERSION=1.1.2' 'ES_HEAP_SIZE=2g'
 
 ExecStartPre=/usr/bin/mkdir -p /data/elasticsearch
-ExecStartPre=/usr/bin/docker pull dockerfile/elasticsearch
+ExecStartPre=/usr/bin/docker pull quay.io/nuxeoio/elasticsearch:${ES_VERSION}
 
 ExecStart=/bin/bash -c '\
   curl -f ${COREOS_PRIVATE_IPV4}:4001/v2/keys/services/elasticsearch; \
@@ -26,7 +27,7 @@ ExecStart=/bin/bash -c '\
     --publish 9200:9200 \
     --publish 9300:9300 \
     --volume /data/elasticsearch:/data \
-    quay.io/nuxeoio/elasticsearch:1.1.2 \
+    quay.io/nuxeoio/elasticsearch:${ES_VERSION} \
     /elasticsearch/bin/elasticsearch \
     --node.name=%p \
     --cluster.name=nuxeo \

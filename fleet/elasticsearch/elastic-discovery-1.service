@@ -7,7 +7,7 @@ EnvironmentFile=/etc/environment
 
 ExecStart=/bin/bash -c '\
   while true; do \
-    curl -f ${COREOS_PRIVATE_IPV4}:9200; \
+    curl -m 2 -f ${COREOS_PRIVATE_IPV4}:9200; \
     if [ "$?" = "0" ]; then \
       etcdctl set /services/elasticsearch/1/transport \'{"host":"${COREOS_PRIVATE_IPV4}","port":9300}\' --ttl 60; \
       etcdctl set /services/elasticsearch/1/location \'{"host":"${COREOS_PRIVATE_IPV4}","port":9200}\' --ttl 60; \
