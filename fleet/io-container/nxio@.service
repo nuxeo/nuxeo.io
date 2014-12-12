@@ -1,0 +1,11 @@
+[Unit]
+Description=IO container - nxio_%i
+
+[Service]
+TimeoutStartSec=10m
+Environment='ENV_TECH_ID=nxio_%i'
+ExecStartPre=/opt/data/fleet/io-container/start-pre.sh
+ExecStart=/opt/data/fleet/io-container/start.sh
+ExecStartPost=/opt/data/fleet/io-container/start-post.sh
+ExecStop=/opt/data/fleet/io-container/stop.sh
+ExecStopPost=/opt/data/fleet/io-container/stop-post.sh
