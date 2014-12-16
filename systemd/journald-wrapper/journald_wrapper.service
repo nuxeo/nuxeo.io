@@ -1,0 +1,7 @@
+[Unit]
+Description=Journal wrapper to AWS
+Requires=systemd-journal-gatewayd.service
+
+[Service]
+Restart=on-failure
+ExecStart=/opt/data/systemd/journald-wrapper/start.sh
