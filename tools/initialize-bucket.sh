@@ -16,10 +16,9 @@ fi
 /opt/data/tools/awscli iam get-user --user-name $USERNAME &> /dev/null
 if [ ! $? -eq 0 ]; then
   /opt/data/tools/awscli iam create-user --user-name $USERNAME --path /container/${PREFIX}/
-
-  etcdctl set /services/${ENV_TECH_ID}/config/s3/bucket ${BUCKET}
-  etcdctl set /services/${ENV_TECH_ID}/config/s3/username ${USERNAME}
 fi
+etcdctl set /services/${ENV_TECH_ID}/config/s3/bucket ${BUCKET}
+etcdctl set /services/${ENV_TECH_ID}/config/s3/username ${USERNAME}
 
 COUNT=`/opt/data/tools/awscli iam list-user-policies --user-name $USERNAME | wc -l`
 if [ $COUNT -eq 0 ]; then
@@ -28,8 +27,8 @@ if [ $COUNT -eq 0 ]; then
   /opt/data/tools/awscli iam put-user-policy --user-name ${USERNAME} --policy-name ${USERNAME} --policy-document "${USER_POLICY}"
 fi
 
-COUNT=`/opt/data/tools/awscli iam list-access-keys --user-name $USERNAME | wc -l`
-if [ $COUNT -eq 0 ]; then
+`etcdctl get /services/${ENV_TECH_ID}/config/s3/awsid &> /dev/null`
+if [ ! $? -eq 0 ]; then
   KEYS_RES=`/opt/data/tools/awscli iam create-access-key --user-name ${USERNAME}`
 
   etcdctl set /services/${ENV_TECH_ID}/config/s3/awsid `echo ${KEYS_RES} | awk '{print $2}'`
