@@ -1,4 +1,16 @@
-#!/bin/sh
+#!/bin/sh -
+
+copy_service() {
+  echo "Copying $1 service."
+  cp -f /opt/data/systemd/$1/*.service /etc/systemd/system/
+  systemctl daemon-reload
+}
+
+start_service() {
+  echo "Starting $1 service."
+  SERVICES=`find /opt/data/systemd/$1/*.service -printf "%f "`
+  /usr/bin/systemctl restart $SERVICES
+}
 
 sleep 60
 
@@ -8,9 +20,12 @@ sudo /usr/bin/systemctl restart gogeta.service
 echo "Started gogeta"
 
 # datadog agent
-echo "Starting Datadog agent"
-cp -f /opt/data/systemd/datadog/datadog.service /etc/systemd/system/
-sudo /usr/bin/systemctl restart datadog.service
+copy_service datadog
+start_service datadog
+
+# journald-wrapper agent
+copy_service journald-wrapper
+start_service journald-wrapper
 
 # ambs
 # echo "Starting postgres amb"

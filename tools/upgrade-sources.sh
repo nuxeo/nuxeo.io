@@ -12,4 +12,4 @@ if [ ! -w $GIT_ROOT ]; then
   exit 2
 fi
 
-exec git stash && git pull --all && git checkout $0 && git stash pop
+exec git stash && git pull --all && git checkout $1 && git stash pop
