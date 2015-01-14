@@ -6,7 +6,7 @@ Requires=docker.service
 [Service]
 TimeoutSec=180
 EnvironmentFile=/etc/environment
-Environment='ES_VERSION=1.1.2' 'ES_HEAP_SIZE=2g'
+Environment='ES_VERSION=1.4.2' 'ES_HEAP_SIZE=2g'
 
 ExecStartPre=/usr/bin/mkdir -p /data/elasticsearch
 ExecStartPre=/usr/bin/docker pull quay.io/nuxeoio/elasticsearch:${ES_VERSION}
@@ -24,6 +24,7 @@ ExecStart=/bin/bash -c '\
   fi; \
   /usr/bin/docker run \
     --name %p \
+    -e ES_HEAP_SIZE=${ES_HEAP_SIZE}
     --publish 9200:9200 \
     --publish 9300:9300 \
     --volume /data/elasticsearch:/data \
@@ -39,4 +40,4 @@ ExecStop=/usr/bin/docker stop %p
 ExecStop=/usr/bin/docker rm %p
 
 [X-Fleet]
-X-Conflicts=elasticsearch*.service
+X-Conflicts=elasticsearch@*.service
