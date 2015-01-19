@@ -2,7 +2,7 @@
 
 S3_ACCESS_KEY=`etcdctl get /services/${SERVICE_ID}/config/s3/awsid`
 S3_BUCKET=`etcdctl get /services/${SERVICE_ID}/config/s3/bucket`
-S3_REGION=`us-east-1`
+S3_REGION=`/usr/bin/etcdctl get /_arken.io/config/s3/region`
 USERNAME=`etcdctl get /services/${SERVICE_ID}/config/s3/username`
 
 /opt/data/tools/awscli s3 rm --region ${S3_REGION} --recursive s3://${S3_BUCKET}/${SERVICE_ID}
