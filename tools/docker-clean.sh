@@ -9,10 +9,9 @@ if [ $# -gt 0 ]; then
 fi
 
 # Clean exited container
-docker ps -a|grep Exit|awk '{print $1}'|xargs docker rm
+docker ps -aq -f status=exited | awk '{print $1}' | xargs docker rm &> /dev/null
 
 # Clean orphan images
-# XXX Should be handle in a different way still we understand better the docker regsitry.
-# docker images|grep none|awk '{print $3}'|xargs docker rmi
+docker images | grep none | awk '{print $3}' | xargs docker rmi &> /dev/null
 
 exit 0

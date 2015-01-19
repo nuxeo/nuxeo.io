@@ -3,4 +3,3 @@ Description=arkenwatch service
 
 [Service]
 ExecStart=/opt/data/fleet/arkenwatch/start.sh
-ExecStop=/opt/data/fleet/arkenwatch/stop.sh
