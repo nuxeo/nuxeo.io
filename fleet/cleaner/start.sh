@@ -1,6 +1,9 @@
 #!/bin/sh -
 
 BASE_PATH=`dirname $0`
+UNITNAME=nxio@`echo $SERVICE_ID | cut -d_ -f2`.service
+
+/usr/bin/fleetctl destroy $UNITNAME
 
 echo "Deleting entries for $SERVICE_ID"
 for SERVICE in "$@"
