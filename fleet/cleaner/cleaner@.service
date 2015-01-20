@@ -6,6 +6,3 @@ TimeoutStartSec=10m
 Environment='FLEET_UNIT_NAME=cleaner@%i.service' 'SERVICE_ID=nxio_%i'
 ExecStart=/opt/data/fleet/cleaner/start.sh postgres elasticsearch s3 etcd
 ExecStop=/opt/data/fleet/cleaner/stop.sh
-
-[X-Fleet]
-X-ConditionMachineOf=elasticsearch@*.service
