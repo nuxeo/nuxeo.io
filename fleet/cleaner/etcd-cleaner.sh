@@ -6,6 +6,6 @@ fi
 etcdctl rm --recursive /services/${SERVICE_ID}
 
 DOMAIN=`etcdctl get /services/${SERVICE_ID}/1/domain`
-if [ $? -eq 0 ]; then
+if [ $? -eq 0 ] && [ -n "${DOMAIN}" ]; then
   etcdctl rm --recursive /domains/${DOMAIN}
 fi
