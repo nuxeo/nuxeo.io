@@ -7,7 +7,7 @@ HOST=`etcdctl ls --recursive /services/elasticsearch \
   | sed -e 's/{"host":"\([^"]*\)","port":\([^"]*\)}/\1\:9200/'`
 
 # Delete ElasticSearch index
-if [ $? -eq 0 ] && [ -n "${HOST}" ]; then
+if [ $? -eq 0 ] && [ -n "${HOST}" ] && [ -n ${SERVICE_ID} ]; then
   curl -XDELETE "http://${HOST}/${SERVICE_ID}"
 else
   echo "Unable to correctly clean ES"
