@@ -7,6 +7,10 @@ if [ $? -eq 0 ]; then
 fi
 /usr/bin/etcdctl set /_arken.io/initialized true
 
+fleetctl start /opt/data/fleet/gogeta/gogeta.service
+fleetctl start /opt/data/fleet/datadog/datadog.service
+fleetctl start /opt/data/fleet/journald-wrapper/journald-wrapper.service
+
 fleetctl start /opt/data/fleet/passivator/passivator.service
 fleetctl start /opt/data/fleet/manager/manager.service
 fleetctl start /opt/data/fleet/etcdump/etcdump.service

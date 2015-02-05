@@ -1,0 +1,9 @@
+[Unit]
+Description=datadog service
+
+[Service]
+ExecStart=/opt/data/fleet/datadog/start.sh
+ExecStop=/opt/data/fleet/datadog/stop.sh
+
+[X-Fleet]
+Global=true

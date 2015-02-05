@@ -4,4 +4,8 @@ Requires=systemd-journal-gatewayd.service
 
 [Service]
 Restart=on-failure
-ExecStart=/opt/data/systemd/journald-wrapper/start.sh
+ExecStart=/opt/data/fleet/journald-wrapper/start.sh
+
+
+[X-Fleet]
+Global=true

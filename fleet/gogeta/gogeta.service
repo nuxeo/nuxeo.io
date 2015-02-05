@@ -1,0 +1,14 @@
+[Unit]
+Description=Gogeta Core service
+ConditionFileNotEmpty=/opt/data/systemd/gogeta/start.sh
+
+[Service]
+Environment='GOGETA_NAME=gogeta'
+ExecStart=/opt/data/fleet/gogeta/start.sh
+ExecStop=/opt/data/fleet/gogeta/stop.sh
+
+Restart=always
+RestartSec=10s
+
+[X-Fleet]
+Global=true

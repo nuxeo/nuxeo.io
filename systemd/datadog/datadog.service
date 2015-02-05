@@ -1,6 +1,0 @@
-[Unit]
-Description=datadog service
-
-[Service]
-ExecStart=/opt/data/systemd/datadog/start.sh
-ExecStop=/opt/data/systemd/datadog/stop.sh
