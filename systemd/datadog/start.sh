@@ -11,7 +11,7 @@ if [ $? -eq 0 ]; then
         IMAGE=datadog/docker-dd-agent
     fi
 
-    /usr/bin/docker run --rm --privileged --name dd-agent -h `hostname` -v /var/run/docker.sock:/var/run/docker.sock -v /proc/mounts:/host/proc/mounts:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -e API_KEY=`etcdctl get /config/datadog/key` ${IMAGE}
+    /usr/bin/docker run --rm --privileged --name dd-agent -h `hostname` -v /var/run/docker.sock:/var/run/docker.sock -v /proc/mounts:/host/proc/mounts:ro -v /sys/fs/cgroup/:/host/sys/fs/cgroup:ro -e API_KEY=`etcdctl get /config/datadog/key` -e TAGS="`etcdctl get /_arken.io/key`,ioinstance" ${IMAGE}
 else
     echo "API key not configured (/config/datadog/key), not starting dd-agent"
     exit 1
