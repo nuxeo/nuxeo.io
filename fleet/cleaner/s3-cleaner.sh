@@ -6,13 +6,13 @@ if [ -z "$var" ]; then
 fi
 
 ETCDCTL=/usr/bin/etcdctl
-if [ ! -f $ETCDCTL ]; then
+if [ ! -x $ETCDCTL ]; then
   echo "Missing $ETCDCTL, exiting $0"
   exit 1
 fi
 
 AWSCLI=/opt/data/tools/awscli
-if [ ! -f $AWSCLI ]; then
+if [ ! -x $AWSCLI ]; then
   echo "Missing $AWSCLI, exiting $0"
   exit 1
 fi

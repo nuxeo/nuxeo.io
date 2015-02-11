@@ -1,22 +1,17 @@
 #!/bin/sh
 
 ETCDCTL=/usr/bin/etcdctl
-if [ ! -f $ETCDCTL ]; then
+if [ ! -x $ETCDCTL ]; then
   echo "Missing $ETCDCTL, exiting $0"
   exit 1
 fi
 
 AWSCLI=/opt/data/tools/awscli
-if [ ! -f $AWSCLI ]; then
+if [ ! -x $AWSCLI ]; then
   echo "Missing $AWSCLI, exiting $0"
   exit 1
 fi
 
-$AWSCLI &> /dev/null
-if [ ! $? -eq 2 ]; then
-  echo "AWSCLI is missing, exiting $0"
-  exit 1
-fi
 
 [ -z $ENV_TECH_ID ] && echo "No environment tech id given, exiting $0" && exit 1
 PREFIX=`$ETCDCTL get /_arken.io/key`
