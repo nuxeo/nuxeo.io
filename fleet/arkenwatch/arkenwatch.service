@@ -3,3 +3,5 @@ Description=arkenwatch service
 
 [Service]
 ExecStart=/opt/data/fleet/arkenwatch/start.sh
+Restart=always
+RestartSec=10s

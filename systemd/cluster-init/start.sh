@@ -10,6 +10,7 @@ fi
 fleetctl start /opt/data/fleet/passivator/passivator.service
 fleetctl start /opt/data/fleet/manager/manager.service
 fleetctl start /opt/data/fleet/etcdump/etcdump.service
+fleetctl start /opt/data/fleet/arkenwatch/arkenwatch.service
 
 fleetctl submit /opt/data/fleet/cleaner/cleaner@.service
 fleetctl submit /opt/data/fleet/io-container/nxio@.service
