@@ -2,25 +2,25 @@
 
 ETCDCTL=/usr/bin/etcdctl
 if [ ! -x $ETCDCTL ]; then
-  echo "Missing $ETCDCTL, exiting $0"
+  echo "ERROR: Missing $ETCDCTL, exiting $0"
   exit 1
 fi
 
 AWSCLI=/opt/data/tools/awscli
 if [ ! -x $AWSCLI ]; then
-  echo "Missing $AWSCLI, exiting $0"
+  echo "ERROR: Missing $AWSCLI, exiting $0"
   exit 1
 fi
 
 
-[ -z $ENV_TECH_ID ] && echo "No environment tech id given, exiting $0" && exit 1
+[ -z $ENV_TECH_ID ] && echo "ERROR: No environment tech id given, exiting $0" && exit 1
 PREFIX=`$ETCDCTL get /_arken.io/key`
-[ -z $PREFIX ] && echo "No arken prefix configured, exiting $0" && exit 1
+[ -z $PREFIX ] && echo "ERROR: No arken prefix configured, exiting $0" && exit 1
 USERNAME=${PREFIX}-${ENV_TECH_ID}
 BUCKET=`$ETCDCTL get /_arken.io/config/s3/bucket`
-[ -z $BUCKET ] && echo "No bucket configured for this cluster, exiting $0" && exit 1
+[ -z $BUCKET ] && echo "ERROR: No bucket configured for this cluster, exiting $0" && exit 1
 REGION=`$ETCDCTL get /_arken.io/config/s3/region`
-[ -z $REGIONS ] && echo "No region configured for this cluster, exiting $0" && exit 1
+[ -z $REGIONS ] && echo "ERROR: No region configured for this cluster, exiting $0" && exit 1
 RAND=`openssl rand -hex 5`
 DIRECTORY=${ENV_TECH_ID}
 
