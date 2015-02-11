@@ -3,12 +3,12 @@
 BASE_PATH=`dirname $0`
 UNITNAME=nxio@`echo $SERVICE_ID | cut -d_ -f2`.service
 
-if [ ! -f /usr/bin/fleetctl ]; then
+if [ ! -x /usr/bin/fleetctl ]; then
     echo "Error: fleetctl not available"
     exit 1
 fi
 
-if [ ! -f /usr/bin/etcdctl ]; then
+if [ ! -x /usr/bin/etcdctl ]; then
     echo "Error: etcdctl not available"
     exit 1
 fi
