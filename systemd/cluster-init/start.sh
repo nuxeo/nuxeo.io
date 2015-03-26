@@ -15,7 +15,9 @@ fleetctl start /opt/data/fleet/arkenwatch/arkenwatch.service
 fleetctl submit /opt/data/fleet/cleaner/cleaner@.service
 fleetctl submit /opt/data/fleet/io-container/nxio@.service
 
-# Start an elasticsearch cluster
-/opt/data/tools/restart-es.sh
+# Start Nuxeo instances ES cluster
+/opt/data/tools/restart-es.sh elasticsearch elasticdiscovery
+# Start Nuxeo instances logs ES cluster
+/opt/data/tools/restart-es.sh elasticsearchlogs elasticlogsdiscovery
 
 /opt/data/tools/wait-fleet-unit.sh manager.service
