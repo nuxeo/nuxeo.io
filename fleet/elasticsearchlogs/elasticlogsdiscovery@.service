@@ -4,13 +4,14 @@ BindsTo=elasticsearchlogs@%i.service
 
 [Service]
 EnvironmentFile=/etc/environment
+Environment='TRANSPORT_PORT=9301' 'HTTP_PORT=9201'
 
 ExecStart=/bin/bash -c '\
   while true; do \
     curl -m 2 -f ${COREOS_PRIVATE_IPV4}:9201; \
     if [ "$?" = "0" ]; then \
-      etcdctl set /services/elasticsearchlogs/%i/transport \'{"host":"${COREOS_PRIVATE_IPV4}","port":9301}\' --ttl 60; \
-      etcdctl set /services/elasticsearchlogs/%i/location \'{"host":"${COREOS_PRIVATE_IPV4}","port":9201}\' --ttl 60; \
+      etcdctl set /services/elasticsearchlogs/%i/transport \'{"host":"${COREOS_PRIVATE_IPV4}","port":${TRANSPORT_PORT}}\' --ttl 60; \
+      etcdctl set /services/elasticsearchlogs/%i/location \'{"host":"${COREOS_PRIVATE_IPV4}","port":${HTTP_PORT}}\' --ttl 60; \
     else \
       etcdctl rm --recursive /services/elasticsearchlogs/%i; \
     fi; \

@@ -6,7 +6,7 @@ Requires=docker.service
 [Service]
 TimeoutSec=180
 EnvironmentFile=/etc/environment
-Environment='ES_VERSION=1.4.4' 'ES_HEAP_SIZE=2g'
+Environment='ES_VERSION=1.4.4' 'ES_HEAP_SIZE=2g' 'TRANSPORT_PORT=9301' 'HTTP_PORT=9201'
 
 ExecStartPre=/usr/bin/mkdir -p /data/elasticsearchlogs
 ExecStartPre=/usr/bin/docker pull quay.io/nuxeoio/elasticsearch:${ES_VERSION}
@@ -25,8 +25,10 @@ ExecStart=/bin/bash -c '\
   /usr/bin/docker run \
     --name %p \
     -e ES_HEAP_SIZE=${ES_HEAP_SIZE} \
-    --publish 9201:9200 \
-    --publish 9301:9300 \
+    -e TRANSPORT_PORT=${TRANSPORT_PORT} \
+    -e HTTP_PORT=${HTTP_PORT} \
+    --publish ${HTTP_PORT}:${HTTP_PORT} \
+    --publish ${TRANSPORT_PORT}:${TRANSPORT_PORT} \
     --volume /data/elasticsearchlogs:/data \
     quay.io/nuxeoio/elasticsearch:${ES_VERSION} \
     /elasticsearch/bin/elasticsearch \
