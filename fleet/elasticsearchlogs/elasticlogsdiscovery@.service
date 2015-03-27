@@ -1,0 +1,23 @@
+[Unit]
+Description=ElasticSearchLogs discovery service
+BindsTo=elasticsearchlogs@%i.service
+
+[Service]
+EnvironmentFile=/etc/environment
+
+ExecStart=/bin/bash -c '\
+  while true; do \
+    curl -m 2 -f ${COREOS_PRIVATE_IPV4}:9201; \
+    if [ "$?" = "0" ]; then \
+      etcdctl set /services/elasticsearchlogs/%i/transport \'{"host":"${COREOS_PRIVATE_IPV4}","port":9301}\' --ttl 60; \
+      etcdctl set /services/elasticsearchlogs/%i/location \'{"host":"${COREOS_PRIVATE_IPV4}","port":9201}\' --ttl 60; \
+    else \
+      etcdctl rm --recursive /services/elasticsearchlogs/%i; \
+    fi; \
+    sleep 30; \
+  done'
+
+ExecStop=/usr/bin/etcdctl rm --recursive /services/elasticsearchlogs/%i
+
+[X-Fleet]
+X-ConditionMachineOf=elasticsearchlogs@%i.service

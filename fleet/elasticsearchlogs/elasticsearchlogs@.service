@@ -1,0 +1,43 @@
+[Unit]
+Description=ElasticSearchLogs service
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutSec=180
+EnvironmentFile=/etc/environment
+Environment='ES_VERSION=1.4.4' 'ES_HEAP_SIZE=2g'
+
+ExecStartPre=/usr/bin/mkdir -p /data/elasticsearchlogs
+ExecStartPre=/usr/bin/docker pull quay.io/nuxeoio/elasticsearch:${ES_VERSION}
+
+ExecStart=/bin/bash -c '\
+  curl -f ${COREOS_PRIVATE_IPV4}:4001/v2/keys/services/elasticsearchlogs; \
+  if [ "$?" = "0" ]; then \
+      UNICAST_HOSTS=$(etcdctl ls --recursive /services/elasticsearchlogs \
+             | grep transport  \
+             | while read i; do etcdctl get $i \
+             | sed -e \'s/{"host":"\([^"]*\)","port":\([^"]*\)}/\1\:\2/\'; done \
+             | paste -s -d","); \
+  else \
+      UNICAST_HOSTS=""; \
+  fi; \
+  /usr/bin/docker run \
+    --name %p \
+    -e ES_HEAP_SIZE=${ES_HEAP_SIZE} \
+    --publish 9201:9200 \
+    --publish 9301:9300 \
+    --volume /data/elasticsearchlogs:/data \
+    quay.io/nuxeoio/elasticsearch:${ES_VERSION} \
+    /elasticsearch/bin/elasticsearch \
+    --node.name=%p-%i \
+    --cluster.name=nuxeologs \
+    --network.publish_host=${COREOS_PRIVATE_IPV4} \
+    --discovery.zen.ping.multicast.enabled=false \
+    --discovery.zen.ping.unicast.hosts=$UNICAST_HOSTS'
+
+ExecStop=/usr/bin/docker stop %p
+ExecStop=/usr/bin/docker rm %p
+
+[X-Fleet]
+X-Conflicts=elasticsearchlogs@*.service
