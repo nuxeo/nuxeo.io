@@ -6,7 +6,7 @@ Requires=docker.service
 [Service]
 TimeoutSec=180
 EnvironmentFile=/etc/environment
-Environment='ES_VERSION=1.4.2' 'ES_HEAP_SIZE=2g'
+Environment='ES_VERSION=1.4.4' 'ES_HEAP_SIZE=2g'
 
 ExecStartPre=/usr/bin/mkdir -p /data/elasticsearch
 ExecStartPre=/usr/bin/docker pull quay.io/nuxeoio/elasticsearch:${ES_VERSION}
