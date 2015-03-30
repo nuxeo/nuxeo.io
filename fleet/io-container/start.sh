@@ -52,4 +52,5 @@ fi
   -e CONNECT_URL="${CONNECT_URL}" \
   -e PACKAGES="${PACKAGES}" \
   -e ES_HOSTS="${ES_HOSTS}" \
+  -v /data/logs/${ENV_TECH_ID}:/var/log/nuxeo
   quay.io/nuxeoio/iocontainer:${CONTAINER_VERSION}
