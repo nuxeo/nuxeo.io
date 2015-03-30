@@ -41,6 +41,11 @@ if [ ! $? -eq 0 ]; then
   CONTAINER_VERSION=6.0
 fi
 
+# Ensure that user with 1000 (the one used in the container) have local rights
+LOCAL_LOG_PATH=/data/logs/${ENV_TECH_ID}
+mkdir -p ${LOCAL_LOG_PATH}
+chown 1000:1000 ${LOCAL_LOG_PATH}
+
 /usr/bin/docker run --rm -P -t --name ${ENV_TECH_ID} \
   -e DB_PORT_1337_TCP_ADDR="${DB_PORT_1337_TCP_ADDR}" -e DB_PORT_1337_TCP_PORT="${DB_PORT_1337_TCP_PORT}" \
   -e PG_DB_NAME="${ENV_TECH_ID}" -e PG_ROLE_NAME="${ENV_TECH_ID}" -e PG_PWD="${PG_PWD}" \
@@ -52,5 +57,5 @@ fi
   -e CONNECT_URL="${CONNECT_URL}" \
   -e PACKAGES="${PACKAGES}" \
   -e ES_HOSTS="${ES_HOSTS}" \
-  -v /data/logs/${ENV_TECH_ID}:/var/log/nuxeo
+  -v ${LOCAL_LOG_PATH}:/var/log/nuxeo \
   quay.io/nuxeoio/iocontainer:${CONTAINER_VERSION}
