@@ -15,6 +15,7 @@ fi
 
 /usr/bin/docker pull quay.io/nuxeoio/logstash:${LOGSTASH_VERSION}
 /usr/bin/docker run --rm --name $LOGSTASH_NAME \
+  -p 4560:4560 \
   -e ESL_HOST="${ESL_HOST}" \
   -e ESL_PORT="${ESL_PORT}" \
   -e ESL_CLUSTER="nuxeologs" \
