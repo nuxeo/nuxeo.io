@@ -2,7 +2,7 @@
 
 HOST=`etcdctl ls --recursive /services/elasticsearch \
   | grep transport \
-  | head -n 1 \
+  | shuf -n 1 \
   | xargs etcdctl get \
   | sed -e 's/{"host":"\([^"]*\)","port":\([^"]*\)}/\1\:9200/'`
 
