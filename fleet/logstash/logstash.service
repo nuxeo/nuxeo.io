@@ -1,0 +1,13 @@
+[Unit]
+Description=Logstash global unit
+
+[Service]
+TimeoutStartSec=0
+Environment='LOGSTASH_NAME=logstash' 'LOGSTASH_VERSION=latest'
+ExecStartPre=/bin/sh /opt/data/fleet/logstash/start-pre.sh
+ExecStart=/bin/sh /opt/data/fleet/logstash/start.sh
+Restart=always
+RestartSec=10s
+
+[X-Fleet]
+Global=true
