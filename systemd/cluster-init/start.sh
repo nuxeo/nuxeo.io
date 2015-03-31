@@ -20,4 +20,6 @@ fleetctl submit /opt/data/fleet/io-container/nxio@.service
 # Start Nuxeo instances logs ES cluster
 /opt/data/tools/restart-es.sh elasticsearchlogs elasticlogsdiscovery
 
+fleetctl start /opt/data/fleet/logstash/logstash.service
+
 /opt/data/tools/wait-fleet-unit.sh manager.service
