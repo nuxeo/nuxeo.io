@@ -5,7 +5,7 @@ ESL_HOST=`etcdctl ls --recursive /services/elasticsearchlogs \
   | shuf -n 1 \
   | xargs etcdctl get \
   | sed -e 's/{"host":"\([^"]*\)","port":\([^"]*\)}/\1/'`
-ESL_PORT=9301
+ESL_PORT=9201
 COOKIE_EXPIRATION=0.5
 COOKIE_SECRET=`openssl rand -hex 15`
 
