@@ -22,4 +22,6 @@ fleetctl submit /opt/data/fleet/io-container/nxio@.service
 
 fleetctl start /opt/data/fleet/logstash/logstash.service
 
+fleetctl start /opt/data/fleet/kibana/kibana.service
+
 /opt/data/tools/wait-fleet-unit.sh manager.service
