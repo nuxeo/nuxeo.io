@@ -5,6 +5,7 @@ Description=Kibana for accessing nuxeo.io logs
 TimeoutStartSec=0
 Environment='KIBANA_NAME=kibana' 'DOORMAN_PORT=8085'
 ExecStart=/bin/sh /opt/data/fleet/kibana/start.sh
+ExecStartPre=/bin/sh /opt/data/fleet/kibana/start-pre.sh
 ExecStartPost=/bin/sh /opt/data/fleet/kibana/start-post.sh
 ExecStop=/opt/data/fleet/kibana/stop.sh
 Restart=always
