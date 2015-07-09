@@ -1,19 +1,19 @@
 #!/bin/sh -
 
-if [ -z "$var" ]; then
+if [ -z "${SERVICE_ID}" ]; then
   echo "ERROR: Service ID is empty, exiting $0"
   exit 1
 fi
 
 ETCDCTL=/usr/bin/etcdctl
-if [ ! -x $ETCDCTL ]; then
-  echo "ERROR: Missing $ETCDCTL, exiting $0"
+if [ ! -x ${ETCDCTL} ]; then
+  echo "ERROR: Missing ${ETCDCTL}, exiting $0"
   exit 1
 fi
 
 AWSCLI=/opt/data/tools/awscli
-if [ ! -x $AWSCLI ]; then
-  echo "ERROR: Missing $AWSCLI, exiting $0"
+if [ ! -x ${AWSCLI} ]; then
+  echo "ERROR: Missing ${AWSCLI}, exiting $0"
   exit 1
 fi
 
