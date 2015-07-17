@@ -22,9 +22,10 @@ if [ ! $? -eq 0 ]; then
   CONNECT_URL=""
 fi
 
-PACKAGES=`/usr/bin/etcdctl get /services/${ENV_TECH_ID}/1/config/packages`
+# XXX Handled a different way to force a Studio package
+PACKAGES="/usr/bin/etcdctl get /_arken.io/config/package"
 if [ ! $? -eq 0 ]; then
-  PACKAGES="nuxeo-web-mobile nuxeo-drive nuxeo-diff nuxeo-spreadsheet nuxeo-dam nuxeo-template-rendering"
+  PACKAGES=""
 fi
 
 HTTP_PROTOCOL=`/usr/bin/etcdctl get /_arken.io/config/http/protocol`
@@ -35,11 +36,7 @@ fi
 # Ensure to rm not correctly stopped container
 /opt/data/tools/docker-clean.sh ${ENV_TECH_ID} &> /dev/null
 
-# XXX To be removed as soon as we handle correctly target platform
-CONTAINER_VERSION=`/usr/bin/etcdctl get /services/${ENV_TECH_ID}/config/platform`
-if [ ! $? -eq 0 ]; then
-  CONTAINER_VERSION=6.0
-fi
+CONTAINER_VERSION="7.3"
 
 /usr/bin/docker run --rm -P -t --name ${ENV_TECH_ID} \
   -e DB_PORT_1337_TCP_ADDR="${DB_PORT_1337_TCP_ADDR}" -e DB_PORT_1337_TCP_PORT="${DB_PORT_1337_TCP_PORT}" \

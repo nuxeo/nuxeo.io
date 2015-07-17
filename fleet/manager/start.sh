@@ -20,14 +20,8 @@ if [ ! $? -eq 0 ]; then
   CONNECT_URL=""
 fi
 
-OAUTH=`/usr/bin/etcdctl get /config/manager/oauth`
-if [ $? -eq 0 ]; then
-  OAUTH_CONSUMER_KEY=`echo $OAUTH | sed -e 's/{"key":"\([^"]*\)","secret":"\([^"]*\)"}/\1/'`
-  OAUTH_CONSUMER_SECRET=`echo $OAUTH | sed -e 's/{"key":"\([^"]*\)","secret":"\([^"]*\)"}/\2/'`
-else
-  OAUTH_CONSUMER_KEY=""
-  OAUTH_CONSUMER_SECRET=""
-fi
+OAUTH_CONSUMER_KEY=""
+OAUTH_CONSUMER_SECRET=""
 
 HTTP_PROTOCOL=`/usr/bin/etcdctl get /_arken.io/config/http/protocol`
 if [ ! $? -eq 0 ]; then
