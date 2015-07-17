@@ -2,6 +2,7 @@
 Description=IO container - nxio_%i
 
 [Service]
+Restart=on-failure
 TimeoutStartSec=10m
 Environment='ENV_TECH_ID=nxio_%i'
 ExecStartPre=/opt/data/fleet/io-container/start-pre.sh

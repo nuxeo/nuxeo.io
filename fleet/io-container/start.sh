@@ -53,3 +53,4 @@ fi
   -e PACKAGES="${PACKAGES}" \
   -e ES_HOSTS="${ES_HOSTS}" \
   quay.io/nuxeoio/iocontainer:${CONTAINER_VERSION}
+exit $?
