@@ -23,7 +23,7 @@ if [ ! $? -eq 0 ]; then
 fi
 
 # XXX Handled a different way to force a Studio package
-PACKAGES="/usr/bin/etcdctl get /_arken.io/config/package"
+PACKAGES=`/usr/bin/etcdctl get /_arken.io/config/package`
 if [ ! $? -eq 0 ]; then
   PACKAGES=""
 fi
