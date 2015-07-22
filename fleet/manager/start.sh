@@ -30,6 +30,7 @@ fi
 
 /opt/data/tools/docker-clean.sh ${MANAGER_NAME} &> /dev/null
 
+MANAGER_VERSION="feature-NXIO-474-Connect_less"
 /usr/bin/docker run --rm -P -t --name ${MANAGER_NAME} \
   -e DB_PORT_1337_TCP_ADDR="${DB_PORT_1337_TCP_ADDR}" -e DB_PORT_1337_TCP_PORT="${DB_PORT_1337_TCP_PORT}" \
   -e PG_DB_NAME="${MANAGER_NAME}" -e PG_ROLE_NAME="${MANAGER_NAME}" -e PG_PWD="${PG_PWD}" \
@@ -39,4 +40,4 @@ fi
   -e DEFAULT_DOMAIN_SUFFIX="${DEFAULT_DOMAIN_SUFFIX}" \
   -e CONNECT_URL="${CONNECT_URL}" -e SSO_URL="${SSO_URL}" \
   -e OAUTH_CONSUMER_KEY="${OAUTH_CONSUMER_KEY}" -e OAUTH_CONSUMER_SECRET="${OAUTH_CONSUMER_SECRET}" \
-  quay.io/nuxeoio/manager
+  quay.io/nuxeoio/manager:${MANAGER_VERSION}
