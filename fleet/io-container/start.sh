@@ -22,11 +22,6 @@ if [ ! $? -eq 0 ]; then
   CONNECT_URL=""
 fi
 
-PACKAGES=`/usr/bin/etcdctl get /services/${ENV_TECH_ID}/1/config/packages`
-if [ ! $? -eq 0 ]; then
-  PACKAGES="nuxeo-web-mobile nuxeo-drive nuxeo-diff nuxeo-spreadsheet nuxeo-dam nuxeo-template-rendering"
-fi
-
 HTTP_PROTOCOL=`/usr/bin/etcdctl get /_arken.io/config/http/protocol`
 if [ ! $? -eq 0 ]; then
   HTTP_PROTOCOL="http"
@@ -39,6 +34,14 @@ fi
 CONTAINER_VERSION=`/usr/bin/etcdctl get /services/${ENV_TECH_ID}/config/platform`
 if [ ! $? -eq 0 ]; then
   CONTAINER_VERSION=6.0
+fi
+
+PACKAGES=`/usr/bin/etcdctl get /services/${ENV_TECH_ID}/1/config/packages`
+if [ ! $? -eq 0 ]; then
+  PACKAGES="nuxeo-web-mobile nuxeo-drive nuxeo-diff nuxeo-spreadsheet nuxeo-dam nuxeo-template-rendering"
+  if [ $CONTAINER_VERSION == "7.4" ]; then
+    PACKAGES="$PACKAGES nuxeo-template-rendering-samples"
+  fi
 fi
 
 /usr/bin/docker run --rm -P -t --name ${ENV_TECH_ID} \
