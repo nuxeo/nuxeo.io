@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/bash
 
 PG_PWD=`openssl rand -hex 15`
 REGISTRY=`etcdctl get /services/docker-registry/1/location | sed -e 's/{"host":"\([^"]*\)","port":\([^"]*\)}/\1\:\2/'`
@@ -39,8 +39,18 @@ fi
 PACKAGES=`/usr/bin/etcdctl get /services/${ENV_TECH_ID}/1/config/packages`
 if [ ! $? -eq 0 ]; then
   PACKAGES="nuxeo-web-mobile nuxeo-drive nuxeo-diff nuxeo-spreadsheet nuxeo-dam nuxeo-template-rendering"
+  VERSION=${CONTAINER_VERSION%-*} # Exclude classifier
+  MAJOR=${VERSION%\.*}
+  MINOR=${VERSION#*\.}
+
+  # Hacky part for 7.4 release only
   if [ $CONTAINER_VERSION == "7.4" ]; then
     PACKAGES="$PACKAGES nuxeo-template-rendering-samples"
+  fi
+
+  # Set packages for >= 7.10
+  if [ $MAJOR -ge 7 ] && [ $MINOR -ge 10 ] || [ $MAJOR -ge 8 ]; then
+    PACKAGES="$PACKAGES nuxeo-template-rendering-samples nuxeo-showcase-content"
   fi
 fi
 
