@@ -5,5 +5,5 @@ AMB_VERSION=latest
 
 # Run Amazon S3 Ambassador container
 /usr/bin/docker pull arken/service-amb:${AMB_VERSION}
-/usr/bin/docker run --rm --name $S3_AMB_NAME -P arken/service-amb:${AMB_VERSION} -servicePath /services/s3
+/usr/bin/docker run --rm --name $S3_AMB_NAME -P quay.io/nuxeoio/service-amb:${AMB_VERSION} -servicePath /services/s3
 echo "Container $S3_AMB_NAME is running."
