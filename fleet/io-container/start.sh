@@ -52,6 +52,11 @@ if [ ! $? -eq 0 ]; then
   if [ $MAJOR -ge 7 ] && [ $MINOR -ge 10 ] || [ $MAJOR -ge 8 ]; then
     PACKAGES="$PACKAGES nuxeo-template-rendering-samples nuxeo-showcase-content"
   fi
+
+  # Set package for >= 8.3
+  if [ $MAJOR -ge 8 ] && [ $MINOR -ge 3 ]; then
+    PACKAGES="nuxeo-showcase-content nuxeo-drive nuxeo-diff nuxeo-spreadsheet nuxeo-dam nuxeo-template-rendering-samples"
+  fi
 fi
 
 /usr/bin/docker run --rm -P -t --name ${ENV_TECH_ID} \
